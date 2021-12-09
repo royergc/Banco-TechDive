@@ -4,7 +4,7 @@ public class ContaCorrente extends Conta {
 
     private double usoChequeEspecial;
     private double limiteChequeEspecial;
-    private double fatorLimite = 0.30;
+    private final double fatorLimite = 0.30;
 
     public ContaCorrente(String nome, String cpf, double rendaMensal, String agencia) {
         super(nome, cpf, rendaMensal, agencia);
@@ -51,6 +51,17 @@ public class ContaCorrente extends Conta {
 
     public double getLimiteChequeEspecial() {
         return this.limiteChequeEspecial;
+    }
+
+    @Override
+    public boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
+        if(rendaMensal < 0) {
+            return false;
+        }
+        else {
+            this.limiteChequeEspecial = rendaMensal * this.fatorLimite;
+            return super.alteraCadastro(nome, rendaMensal, agencia);
+        }
     }
 
     public double getUsoChequeEspecial() {
