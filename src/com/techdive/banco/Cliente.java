@@ -10,11 +10,13 @@ public class Cliente {
            this.nome = nome;
            this.cpf = cpf;
            this.rendaMensal = rendaMensal;
+           System.out.println("Cliente criado");
        }
        else {
-           this.nome = "CPF invalido";
+           this.nome = "Cliente com CPF invalido";
            this.cpf = "CPF invalido";
-           this.rendaMensal = "CPF invalido"
+           this.rendaMensal = 0;
+           System.out.println("Cliente invalido");
        }
     }
 
