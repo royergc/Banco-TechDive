@@ -22,25 +22,20 @@ public class Conta {
         this.rendaMensal = rendaMensal;
         this.agencia = agencia;
         this.saldo = 0;
-
-        System.out.println("Conta numero " + numConta + " criada com sucesso! Cliente: " + nome);
-
     }
 
     public double getSaldo() {
         return saldo;
     }
 
-    public boolean deposito(double valorDepositar) {
+    public void deposito(double valorDepositar) {
         if(valorDepositar > 0) {
             saldo += valorDepositar;
-            return true;
         }
-        return false;
     }
 
     public boolean saque(double valorSacar) {
-        if( valorSacar < saldo) {
+        if( valorSacar <= saldo) {
             saldo -= valorSacar;
             return true;
         }
@@ -60,5 +55,21 @@ public class Conta {
         this.rendaMensal = rendaMensal;
         this.agencia = agencia;
         return true;
+    }
+
+    protected double getRendaMensal() {
+        return this.rendaMensal;
+    }
+
+    protected String getNome(){
+        return this.nome;
+    }
+
+    protected String getCpf(){
+        return this.cpf;
+    }
+
+    protected String getAgencia() {
+        return this.agencia;
     }
 }

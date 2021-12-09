@@ -6,17 +6,15 @@ public class Cliente {
     private double rendaMensal;
 
     Cliente(String nome, String cpf, double rendaMensal) {
-       if(validaCPF(cpf)) {
+        if(validaCPF(cpf)) {
            this.nome = nome;
            this.cpf = cpf;
            this.rendaMensal = rendaMensal;
-           System.out.println("Cliente criado");
        }
        else {
-           this.nome = "Cliente com CPF invalido";
+           this.nome = "";
            this.cpf = "CPF invalido";
            this.rendaMensal = 0;
-           System.out.println("Cliente invalido");
        }
     }
 
