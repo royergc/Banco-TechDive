@@ -43,6 +43,13 @@ public abstract class Conta {
         return false;
     }
 
+    public boolean transfere(Conta contaDestino, double valorTransferir) {
+        if(saque(valorTransferir))
+            return contaDestino.deposito(valorTransferir);
+        else
+            return false;
+    }
+
     public boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
         if(!agencia.equals("Florianopolis") || !agencia.equals("Sao Jose")) {
             return false;

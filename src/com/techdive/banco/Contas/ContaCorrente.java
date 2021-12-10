@@ -47,6 +47,14 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
+    public boolean transfere(Conta contaDestino, double valorTransferir) {
+        if(saque(valorTransferir))
+            return contaDestino.deposito(valorTransferir);
+        else
+            return false;
+    }
+
+    @Override
     public double getSaldo() {
          return super.getSaldo() - usoLimiteChequeEspecial;
     }
