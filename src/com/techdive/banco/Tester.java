@@ -40,7 +40,7 @@ public class Tester {
                     + "Agencia: " + contaTeste2.getAgencia()
                     + "Saldo: " + contaTeste2.getSaldo()
                     + "Limite: " + contaTeste2.getLimiteChequeEspecial()
-                    + "Saldo Chegue Especial: " + contaTeste2.getUsoChequeEspecial());
+                    + "Saldo Chegue Especial: " + contaTeste2.getUsoLimiteChequeEspecial());
 
             System.out.println("Fazendo depósito");
             contaTeste2.deposito(25000);
@@ -53,7 +53,7 @@ public class Tester {
             else {
                 System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
 
             System.out.println("Testando saque sem uso do limite - fazendo saque de 4000");
             if(contaTeste2.saque(4000)) {
@@ -62,7 +62,7 @@ public class Tester {
             else {
                 System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
 
 
             System.out.println("Testando uso do limite - fazendo saque de 6000");
@@ -72,7 +72,7 @@ public class Tester {
             else {
                 System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
 
             System.out.println("Novo saque, usando todo limite");
             if(contaTeste2.saque(550)) {
@@ -81,25 +81,25 @@ public class Tester {
             else {
                 System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
             contaTeste2.deposito(3550);
             System.out.println("Deposito de 3550 feito");
             System.out.println("Novo saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
 
             contaTeste2.saque(1500);
             System.out.println("Saque de 1500 feito, saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
             System.out.println("Deposito de 33500 feito");
             contaTeste2.deposito(33500);
             System.out.println("Novo saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
             System.out.println("Novo saque,  estourando limite - tentando sacar 50000");
@@ -109,7 +109,7 @@ public class Tester {
             else {
                 System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
             System.out.println("Novo saque,  zerando a conta - tentando sacar 30000");
@@ -119,7 +119,7 @@ public class Tester {
             else {
                 System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
             }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoChequeEspecial());
+            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
             System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
 
 
