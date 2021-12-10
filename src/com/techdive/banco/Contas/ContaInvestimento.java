@@ -1,0 +1,16 @@
+package com.techdive.banco.Contas;
+
+public class ContaInvestimento extends Conta {
+
+    public ContaInvestimento(String nome, String cpf, double rendaMensal, String agencia) {
+        super(nome, cpf, rendaMensal, agencia);
+    }
+
+    public double escolheInvestimento(int escolha) {
+        return 0;
+    }
+
+    public double simularRendimento(int periodoMeses, double rentabilidade) {
+        return 0;
+    }
+}
