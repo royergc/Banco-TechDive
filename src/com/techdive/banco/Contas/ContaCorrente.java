@@ -1,4 +1,6 @@
-package com.techdive.banco;
+package com.techdive.banco.Contas;
+
+import com.techdive.banco.Contas.Conta;
 
 import java.util.ArrayList;
 

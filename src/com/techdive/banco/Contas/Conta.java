@@ -1,4 +1,4 @@
-package com.techdive.banco;
+package com.techdive.banco.Contas;
 
 // falta implementar extrato, transferir
 
@@ -58,19 +58,19 @@ public class Conta {
         return true;
     }
 
-    protected double getRendaMensal() {
+    public double getRendaMensal() {
         return this.rendaMensal;
     }
 
-    protected String getNome(){
+    public String getNome(){
         return this.nome;
     }
 
-    protected String getCpf(){
+    public String getCpf(){
         return this.cpf;
     }
 
-    protected String getAgencia() {
+    public String getAgencia() {
         return this.agencia;
     }
 }

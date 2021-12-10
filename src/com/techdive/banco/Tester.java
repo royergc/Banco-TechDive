@@ -1,10 +1,14 @@
 package com.techdive.banco;
 
+import com.techdive.banco.Cliente.Cliente;
+import com.techdive.banco.Contas.Conta;
+import com.techdive.banco.Contas.ContaCorrente;
+
 public class Tester {
     public static void main(String[] args) {
 
         System.out.println("Tentando criar cliente");
-        Cliente clienteTeste = new Cliente("Guilherme Teste", "0323252352", 1500);
+        Cliente clienteTeste = new Cliente("Guilherme Teste", "03596463955", 1500);
         if(clienteTeste.getCpf().equals("CPF invalido")) {
             System.out.println("Cliente não foi aceito - CPF inválido - tente novamente");
         }
