@@ -13,28 +13,6 @@ public class Tester {
             System.out.println("Cliente não foi aceito - CPF inválido - tente novamente");
         }
         else {
-            System.out.println("Cliente criado corretamente");
-            Conta contaTeste = new Conta(clienteTeste.getNome(), clienteTeste.getCpf(), clienteTeste.getRendaMensal(), "Florianopolis");
-            System.out.println("Conta criada!");
-            System.out.println("Nome: " + contaTeste.getNome()
-                    + "CPF: " + contaTeste.getCpf()
-                    + "Renda mensal: " + contaTeste.getRendaMensal()
-                    + "Agencia: " + contaTeste.getAgencia()
-                    + "Saldo: " + contaTeste.getSaldo());
-
-            contaTeste.deposito(1000);
-            System.out.println("Saldo: " + contaTeste.getSaldo());
-
-            System.out.println("Tentando saque ivalido: 1500");
-            if(contaTeste.saque(1500)) {
-                System.out.println("Saldo após saque: " + contaTeste.getSaldo());
-            }
-            else
-            {
-                System.out.println("Saque inválido - valor excede o limite");
-                System.out.println("Saldo: " + contaTeste.getSaldo());
-            }
-
             System.out.println("Criando conta corrente e testando limite");
             ContaCorrente contaTeste2 = new ContaCorrente("Guilherme Teste", "123456789-99",18500,"Sao Jose");
             System.out.println("Conta criada!");

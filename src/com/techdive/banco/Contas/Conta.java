@@ -4,7 +4,7 @@ package com.techdive.banco.Contas;
 
 import java.util.ArrayList;
 
-public class Conta {
+public abstract class Conta {
     private static int numConta = 0;        // valor estatico = contagem dos objetos conta criados e id da conta
 
     private String nome;
