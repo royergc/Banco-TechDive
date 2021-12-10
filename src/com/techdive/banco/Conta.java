@@ -2,6 +2,8 @@ package com.techdive.banco;
 
 // falta implementar extrato, transferir
 
+import java.util.ArrayList;
+
 public class Conta {
     private static int numConta = 0;        // valor estatico = contagem dos objetos conta criados e id da conta
 
@@ -11,9 +13,6 @@ public class Conta {
 
     private String agencia;
     private double saldo;
-
-//    private ArrayList<String> extrato;
-
 
     public Conta(String nome, String cpf, double rendaMensal, String agencia) {
         numConta++;
@@ -28,10 +27,12 @@ public class Conta {
         return saldo;
     }
 
-    public void deposito(double valorDepositar) {
+    public boolean deposito(double valorDepositar) {
         if(valorDepositar > 0) {
             saldo += valorDepositar;
+            return true;
         }
+        return false;
     }
 
     public boolean saque(double valorSacar) {
