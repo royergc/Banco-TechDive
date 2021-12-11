@@ -1,116 +1,111 @@
 package com.techdive.banco;
 
-import com.techdive.banco.Cliente.Cliente;
-import com.techdive.banco.Contas.Conta;
+import com.techdive.banco.Clientes.Cliente;
 import com.techdive.banco.Contas.ContaCorrente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tester {
+
+    public static Cliente criaCliente(String nome, String cpf, double rendaMensal) {
+        System.out.println("Tentando criar cliente");
+        Cliente cliente = new Cliente(nome, cpf, rendaMensal);
+        if (cliente.getCpf().equals("CPF invalido")) {
+            System.out.println("Cliente não foi aceito - CPF inválido - tente novamente");
+            return null;
+        }
+        System.out.println("Cliente criado corretamente");
+        return cliente;
+    }
+
+    public static ContaCorrente criaContaCorrente(Cliente cliente, String agencia) {
+        System.out.println("Criando conta corrente");
+        ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(),cliente.getRendaMensal(),agencia);
+        System.out.println("Conta criada");
+        System.out.println("Nome: " + conta.getNome()
+                + "CPF: " + conta.getCpf()
+                + "Renda mensal: " + conta.getRendaMensal()
+                + "Agencia: " + conta.getAgencia()
+                + "Saldo: " + conta.getSaldo()
+                + "Limite: " + conta.getLimiteChequeEspecial()
+                + "Saldo Chegue Especial: " + conta.getUsoLimiteChequeEspecial());
+        return conta;
+    }
+
     public static void main(String[] args) {
 
-        System.out.println("Tentando criar cliente");
-        Cliente clienteTeste = new Cliente("Guilherme Teste", "03596463955", 1500);
-        if(clienteTeste.getCpf().equals("CPF invalido")) {
-            System.out.println("Cliente não foi aceito - CPF inválido - tente novamente");
+        Cliente guilherme = criaCliente("Guilherme", "03596463955", 1500);
+        ContaCorrente ccGuilherme = criaContaCorrente(guilherme,"Florianopolis");
+
+        Cliente joao = criaCliente("Joao", "06706746991", 20000);
+        ContaCorrente ccJoao = criaContaCorrente(joao,"Sao Jose");
+
+        Cliente marilene = criaCliente("Marilene", "00249313901", 12000 );
+        ContaCorrente ccMarilene = criaContaCorrente(marilene,"Florianopolis");
+
+        System.out.println("Deposita 10.000 na conta do Guilherme");
+        ccGuilherme.deposito(10000);
+        System.out.println("Saldo da conta do Guilherme: " + ccGuilherme.getSaldo());
+
+        System.out.println("Deposita 50.000 na conta do Joao");
+        ccJoao.deposito(50000);
+        System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
+
+        System.out.println("Saca 25.000 da conta do Joao");
+        ccJoao.saque(25000);
+        System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
+
+        System.out.println("Deposita 10.000 na conta da Marilene");
+        ccMarilene.deposito(10000);
+        System.out.println("Saldo na conta da Marilene: " + ccMarilene.getSaldo());
+
+        System.out.println("Transfere 5.000 do Guilherme pra Marilene");
+        ccGuilherme.transfere(ccMarilene,5000);
+        System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Marilene : " + ccMarilene.getSaldo());
+
+        System.out.println("Transfere 5.150 do Guilherme pro Joao");
+        ccGuilherme.transfere(ccJoao, 5150);
+        System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Joao : " + ccJoao.getSaldo());
+
+        System.out.println("Tenta sacar 700 reais da conta do Guilherme");
+        ccGuilherme.saque(700);
+        System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
+        System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
+        System.out.println("Saldo Guilherme :" + ccGuilherme.getSaldo());
+
+        System.out.println("Deposita 10.000 na conta do Guilherme");
+        ccGuilherme.deposito(10000);
+        System.out.println("Saldo Guilherme " + ccGuilherme.getSaldo());
+        System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
+        System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
+
+        System.out.println("Transfere 32000 do Joao pra Marilene");
+        ccJoao.transfere(ccMarilene, 32000);
+        System.out.println("Saldo Joao: " + ccJoao.getSaldo());
+        System.out.println("Limite Joao: " + ccJoao.getLimiteChequeEspecial());
+        System.out.println("Uso do limite do Joao: " + ccJoao.getUsoLimiteChequeEspecial());
+        System.out.println("Saldo MArilene : " + ccMarilene.getSaldo());
+
+        System.out.println("Imprimindo extrato Guilherme");
+        List<String> extratoGui = new ArrayList<>();
+        extratoGui = ccGuilherme.getExtrato(1);
+        for(int i = 0; i < extratoGui.size(); i++) {
+            System.out.println(extratoGui.get(i));
         }
-        else {
-            System.out.println("Criando conta corrente e testando limite");
-            ContaCorrente contaTeste2 = new ContaCorrente("Guilherme Teste", "123456789-99",18500,"Sao Jose");
-            System.out.println("Conta criada!");
-            System.out.println("Nome: " + contaTeste2.getNome()
-                    + "CPF: " + contaTeste2.getCpf()
-                    + "Renda mensal: " + contaTeste2.getRendaMensal()
-                    + "Agencia: " + contaTeste2.getAgencia()
-                    + "Saldo: " + contaTeste2.getSaldo()
-                    + "Limite: " + contaTeste2.getLimiteChequeEspecial()
-                    + "Saldo Chegue Especial: " + contaTeste2.getUsoLimiteChequeEspecial());
 
-            System.out.println("Fazendo depósito");
-            contaTeste2.deposito(25000);
-            System.out.println("Deposito feito, saldo: " + contaTeste2.getSaldo());
+        System.out.println("Imprimindo extrato Joao");
+        List<String> extratoJoao = new ArrayList<>();
+        extratoJoao = ccJoao.getExtrato(1);
+        for(int i = 0; i < extratoJoao.size(); i++) {
+            System.out.println(extratoJoao.get(i));
+        }
 
-            System.out.println("Testando saque sem uso do limite - fazendo saque de 20000");
-            if(contaTeste2.saque(20000)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-
-            System.out.println("Testando saque sem uso do limite - fazendo saque de 4000");
-            if(contaTeste2.saque(4000)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-
-
-            System.out.println("Testando uso do limite - fazendo saque de 6000");
-            if(contaTeste2.saque(6000)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque não realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-
-            System.out.println("Novo saque, usando todo limite");
-            if(contaTeste2.saque(550)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-            contaTeste2.deposito(3550);
-            System.out.println("Deposito de 3550 feito");
-            System.out.println("Novo saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-
-            contaTeste2.saque(1500);
-            System.out.println("Saque de 1500 feito, saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-            System.out.println("Deposito de 33500 feito");
-            contaTeste2.deposito(33500);
-            System.out.println("Novo saldo: " + contaTeste2.getSaldo());
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-            System.out.println("Novo saque,  estourando limite - tentando sacar 50000");
-            if(contaTeste2.saque(50000)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-            System.out.println("Novo saque,  zerando a conta - tentando sacar 30000");
-            if(contaTeste2.saque(30000)) {
-                System.out.println("Saque realizado, novo saldo: " + contaTeste2.getSaldo());
-            }
-            else {
-                System.out.println("Saque nao realizado, saldo: " + contaTeste2.getSaldo());
-            }
-            System.out.println("Saldo cheque especial: " + contaTeste2.getUsoLimiteChequeEspecial());
-            System.out.println("Limite cheque especial: " + contaTeste2.getLimiteChequeEspecial());
-
-
-
-
-
-
-
-
+        System.out.println("Imprimindo extrato Marilene");
+        List<String> extratoMarilene = new ArrayList<>();
+        extratoMarilene = ccMarilene.getExtrato(1);
+        for(int i = 0; i < extratoMarilene.size(); i++) {
+            System.out.println(extratoMarilene.get(i));
         }
     }
 }

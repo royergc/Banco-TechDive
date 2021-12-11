@@ -1,4 +1,4 @@
-package com.techdive.banco.Cliente;
+package com.techdive.banco.Clientes;
 
 public class Cliente {
     private String nome;

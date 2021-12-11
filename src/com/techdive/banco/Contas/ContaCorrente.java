@@ -1,66 +1,20 @@
 package com.techdive.banco.Contas;
 
-import com.techdive.banco.Contas.Conta;
-
-import java.util.ArrayList;
-
 public class ContaCorrente extends Conta {
 
-    private double usoLimiteChequeEspecial;
     private double limiteChequeEspecial;
+    private double usoLimiteChequeEspecial;
     private static final double fatorLimite = 0.30;
-
-    private ArrayList<String> extrato;
 
     public ContaCorrente(String nome, String cpf, double rendaMensal, String agencia) {
         super(nome, cpf, rendaMensal, agencia);
         this.limiteChequeEspecial = super.getRendaMensal() * fatorLimite;
         this.usoLimiteChequeEspecial = 0;
-        extrato = new ArrayList<>();
-    }
-
-    @Override
-    public boolean deposito(double valorDepositar) {
-        if(valorDepositar < 0 ) return false;
-        if(valorDepositar > usoLimiteChequeEspecial) {
-            super.deposito(valorDepositar - usoLimiteChequeEspecial);
-            usoLimiteChequeEspecial = 0;
-        } else {
-            usoLimiteChequeEspecial -= valorDepositar;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean saque(double valorSacar) {
-        if(!podeSacar(valorSacar)) return false;
-
-        if(usoLimiteChequeEspecial > 0 ) {
-            usoLimiteChequeEspecial += valorSacar;
-            return true;
-        }
-        else {
-                calculaUsoChequeEspecial(valorSacar);
-                valorSacar -= usoLimiteChequeEspecial;
-                return super.saque(valorSacar);
-        }
-    }
-
-    @Override
-    public boolean transfere(Conta contaDestino, double valorTransferir) {
-        if(saque(valorTransferir))
-            return contaDestino.deposito(valorTransferir);
-        else
-            return false;
     }
 
     @Override
     public double getSaldo() {
          return super.getSaldo() - usoLimiteChequeEspecial;
-    }
-
-    public double getLimiteChequeEspecial() {
-        return this.limiteChequeEspecial;
     }
 
     @Override
@@ -78,8 +32,39 @@ public class ContaCorrente extends Conta {
         return this.usoLimiteChequeEspecial;
     }
 
-    private boolean podeSacar(double valorSacar) {
-        if(valorSacar - getSaldo() > limiteChequeEspecial) {
+    public double getLimiteChequeEspecial() {
+        return this.limiteChequeEspecial;
+    }
+
+   @Override
+    protected boolean debitaConta(double valorDebitar) {
+        if(!podeDebitar(valorDebitar)) return false;
+
+        if(usoLimiteChequeEspecial > 0 ) {
+            usoLimiteChequeEspecial += valorDebitar;
+            return true;
+        }
+        else {
+            calculaUsoChequeEspecial(valorDebitar);
+            valorDebitar -= usoLimiteChequeEspecial;
+            return super.debitaConta(valorDebitar);
+        }
+    }
+
+    @Override
+    protected boolean creditaConta(double valorCreditar) {
+        if (valorCreditar < 0) return false;
+        if (valorCreditar > usoLimiteChequeEspecial) {
+            super.creditaConta(valorCreditar - usoLimiteChequeEspecial);
+            usoLimiteChequeEspecial = 0;
+        } else {
+            usoLimiteChequeEspecial -= valorCreditar;
+        }
+        return true;
+    }
+
+    private boolean podeDebitar(double valorDebitar) {
+        if(valorDebitar - getSaldo() > limiteChequeEspecial) {
             return false;
         }
         return true;
