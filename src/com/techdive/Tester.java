@@ -16,20 +16,25 @@ public class Tester {
             System.out.println("Cliente não foi aceito - CPF inválido - tente novamente");
             return null;
         }
+        Banco.cadastraCliente(cliente);
         System.out.println("Cliente criado corretamente");
         System.out.println(cliente);
         return cliente;
     }
 
     public static ContaCorrente criaContaCorrente(Cliente cliente, String agencia) {
-        System.out.println("Criando conta corrente");
+        System.out.println("Tentando criar conta corrente");
+        if(Banco.cadastraConta(cliente,agencia,1)){
+            System.out.println("Conta criada");
+            ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getNumContaCliente(cliente.getCpf()));
+            System.out.println(conta);
+            return conta;
+        }
+        else {
+            System.out.println("Erro - conta não foi criada");
+            return null;
+        }
 
-        Banco.cadastraConta(cliente,agencia,1);
-        System.out.println("Conta criada");
-        System.out.println(Banco.getNumContaCliente(cliente.getCpf()));
-        ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getNumContaCliente(cliente.getCpf()));
-        System.out.println(conta);
-        return conta;
     }
 
     public static void main(String[] args) {
@@ -107,14 +112,12 @@ public class Tester {
             System.out.println(extratoMarilene.get(i));
         }
 
-        Banco.cadastraCliente(guilherme);
-        Banco.cadastraCliente(joao);
-        Banco.cadastraCliente(marilene);
-
         System.out.println(Banco.getCliente(guilherme.getCpf()));
         System.out.println(Banco.getConta(1));
         System.out.println(Banco.getConta(2));
         System.out.println(Banco.getConta(3));
+
+        System.out.println(Banco.getConta(Banco.getNumContaCliente(guilherme.getCpf())));
 
 
 

@@ -69,6 +69,5 @@ public class Banco {
     private static void registraConta(Conta conta){
         contas.put(conta.getIdConta(), conta);
         mapaClienteConta.put(conta.getCpf(),conta.getIdConta());
-        System.out.println("Adicionada conta " + conta + " no Banco");
     }
 }
