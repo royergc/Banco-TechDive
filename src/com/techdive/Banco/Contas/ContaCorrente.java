@@ -1,10 +1,10 @@
-package com.techdive.banco.Contas;
+package com.techdive.Banco.Contas;
 
 public class ContaCorrente extends Conta {
 
     private double limiteChequeEspecial;
     private double usoLimiteChequeEspecial;
-    private static final double fatorLimite = 0.30;
+    private static final double fatorLimite = 0.50;
 
     public ContaCorrente(String nome, String cpf, double rendaMensal, String agencia) {
         super(nome, cpf, rendaMensal, agencia);
@@ -26,6 +26,13 @@ public class ContaCorrente extends Conta {
             this.limiteChequeEspecial = rendaMensal * this.fatorLimite;
             return super.alteraCadastro(nome, rendaMensal, agencia);
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                " [LimiteChequeEspecial] = " + limiteChequeEspecial + " - " +
+                "[UsoLimiteChequeEspecial] = " + usoLimiteChequeEspecial;
     }
 
     public double getUsoLimiteChequeEspecial() {

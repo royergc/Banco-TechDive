@@ -1,4 +1,6 @@
-package com.techdive.banco.Contas;
+package com.techdive.Banco.Contas;
+
+import com.techdive.Banco.Banco;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,7 +36,6 @@ public abstract class Conta {
         this.extrato = new ArrayList<>();
         formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         formatadorHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-
     }
 
     public boolean deposito(double valorDepositar) {
@@ -103,12 +104,12 @@ public abstract class Conta {
 
     @Override
     public String toString() {
-        return "[Conta] = " + idConta +
-                " [Nome cliente] = " + nome + " - " +
-                " [CPF] = " + cpf + " - " +
-                " [RendaMensal] = " + rendaMensal + " - " +
-                " [Agencia] = " + agencia + " - " +
-                " [Saldo] =" + saldo;
+        return "[Conta] = " + idConta + " - " +
+                "[Nome cliente] = " + nome + " - " +
+                "[CPF] = " + cpf + " - " +
+                "[RendaMensal] = " + rendaMensal + " - " +
+                "[Agencia] = " + agencia + " - " +
+                "[Saldo] = " + saldo;
     }
 
     protected boolean creditaConta(double valorCreditar) {

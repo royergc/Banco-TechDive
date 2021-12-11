@@ -1,4 +1,4 @@
-package com.techdive.banco.Contas;
+package com.techdive.Banco.Contas;
 
 public class ContaInvestimento extends Conta {
 

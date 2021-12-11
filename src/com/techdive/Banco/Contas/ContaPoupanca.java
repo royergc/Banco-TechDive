@@ -1,6 +1,4 @@
-package com.techdive.banco.Contas;
-
-import com.techdive.banco.Contas.Conta;
+package com.techdive.Banco.Contas;
 
 public class ContaPoupanca extends Conta {
 

@@ -1,7 +1,9 @@
-package com.techdive.banco;
+package com.techdive;
 
-import com.techdive.banco.Clientes.Cliente;
-import com.techdive.banco.Contas.ContaCorrente;
+import com.techdive.Banco.Clientes.Cliente;
+import com.techdive.Banco.Agencia;
+import com.techdive.Banco.Banco;
+import com.techdive.Banco.Contas.ContaCorrente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,20 +18,18 @@ public class Tester {
             return null;
         }
         System.out.println("Cliente criado corretamente");
+        System.out.println(cliente);
         return cliente;
     }
 
     public static ContaCorrente criaContaCorrente(Cliente cliente, String agencia) {
         System.out.println("Criando conta corrente");
-        ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(),cliente.getRendaMensal(),agencia);
+        //ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
+        Banco.cadastraConta(cliente,agencia,1);
         System.out.println("Conta criada");
-        System.out.println("Nome: " + conta.getNome()
-                + "CPF: " + conta.getCpf()
-                + "Renda mensal: " + conta.getRendaMensal()
-                + "Agencia: " + conta.getAgencia()
-                + "Saldo: " + conta.getSaldo()
-                + "Limite: " + conta.getLimiteChequeEspecial()
-                + "Saldo Chegue Especial: " + conta.getUsoLimiteChequeEspecial());
+        System.out.println(Banco.getContaCliente(cliente.getCpf()));
+        ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getContaCliente(cliente.getCpf()));
+        System.out.println(conta);
         return conta;
     }
 
@@ -107,5 +107,16 @@ public class Tester {
         for(int i = 0; i < extratoMarilene.size(); i++) {
             System.out.println(extratoMarilene.get(i));
         }
+
+        Banco.cadastraCliente(guilherme);
+        Banco.cadastraCliente(joao);
+        Banco.cadastraCliente(marilene);
+
+        System.out.println(Banco.getCliente(guilherme.getCpf()));
+        System.out.println(Banco.getConta(1));
+        System.out.println(Banco.getConta(2));
+        System.out.println(Banco.getConta(3));
+
+        //Menu tela = new Menu();
     }
 }
