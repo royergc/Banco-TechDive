@@ -2,11 +2,15 @@ package com.techdive.banco.Contas;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public abstract class Conta {
     private static int numConta = 0;        // valor estatico = contagem dos objetos conta criados e id da conta
 
+    private int idConta;
     private String nome;
     private String cpf;
     private double rendaMensal;
@@ -14,25 +18,28 @@ public abstract class Conta {
     private String agencia;
     private double saldo;
 
-    protected List<String> extrato;
+    private List<String> extrato;
+    private DateTimeFormatter formatadorData;
+    private DateTimeFormatter formatadorHora;
+
 
     public Conta(String nome, String cpf, double rendaMensal, String agencia) {
         numConta++;
+        this.idConta = numConta;
         this.nome = nome;
         this.cpf = cpf;
         this.rendaMensal = rendaMensal;
         this.agencia = agencia;
         this.saldo = 0;
         this.extrato = new ArrayList<>();
-    }
+        formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formatadorHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public double getSaldo() {
-        return saldo;
     }
 
     public boolean deposito(double valorDepositar) {
         if(creditaConta(valorDepositar)) {
-            extrato.add(LocalDate.now() + " - " +  LocalTime.now()+ " [Deposito]: R$ " + valorDepositar);
+            extrato.add(LocalDate.now().format(formatadorData) + " - " +  LocalTime.now().format(formatadorHora) + " -> [Deposito]: R$ " + valorDepositar);
             return true;
         }
         return false;
@@ -40,7 +47,7 @@ public abstract class Conta {
 
     public boolean saque(double valorSacar) {
         if(debitaConta(valorSacar)) {
-            extrato.add(LocalDate.now() + " - " + LocalTime.now() + " [Saque]: R$ " + valorSacar);
+            extrato.add(LocalDate.now().format(formatadorData) + " - " + LocalTime.now().format(formatadorHora) + " -> [Saque]: R$ " + valorSacar);
             return true;
         }
         return false;
@@ -49,8 +56,8 @@ public abstract class Conta {
     public boolean transfere(Conta contaDestino, double valorTransferir) {
         if(debitaConta(valorTransferir)) {
             if(contaDestino.creditaConta(valorTransferir)) {
-                extrato.add(LocalDate.now() + " - " + LocalTime.now() + "[Transferencia realizada]: R$ " + valorTransferir + " para " + contaDestino.getNome());
-                contaDestino.extrato.add(LocalDate.now() + " - " + LocalTime.now() + "[Transferencia recebida]: R$ " + valorTransferir + " de " + getNome());
+                extrato.add(LocalDate.now().format(formatadorData) + " - " + LocalTime.now().format(formatadorHora) + " -> [Transferencia realizada]: R$ " + valorTransferir + " para " + contaDestino.getNome());
+                contaDestino.extrato.add(LocalDate.now().format(formatadorData) + " - " + LocalTime.now().format(formatadorHora) + " -> [Transferencia recebida]: R$ " + valorTransferir + " de " + getNome());
                 return true;
             }
             return false;
@@ -73,29 +80,35 @@ public abstract class Conta {
         return true;
     }
 
-    public double getRendaMensal() {
-        return this.rendaMensal;
-    }
-
-    public int getNumConta() {
-        return this.numConta;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public String getAgencia() {
-        return this.agencia;
+    public double getSaldo() {
+        return saldo;
     }
 
     public List<String> getExtrato(int periodo) {
         extrato.add("Saldo atual: R$ " + getSaldo());
         return extrato;
+    }
+
+    public double getRendaMensal() { return this.rendaMensal; }
+
+    public int getIdConta() {
+        return this.idConta;
+    }
+
+    public String getNome() { return this.nome; }
+
+    public String getCpf() { return this.cpf; }
+
+    public String getAgencia() { return this.agencia; }
+
+    @Override
+    public String toString() {
+        return "[Conta] = " + idConta +
+                " [Nome cliente] = " + nome + " - " +
+                " [CPF] = " + cpf + " - " +
+                " [RendaMensal] = " + rendaMensal + " - " +
+                " [Agencia] = " + agencia + " - " +
+                " [Saldo] =" + saldo;
     }
 
     protected boolean creditaConta(double valorCreditar) {
