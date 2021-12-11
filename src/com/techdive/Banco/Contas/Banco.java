@@ -2,8 +2,6 @@ package com.techdive.Banco.Contas;
 
 import com.techdive.Banco.Agencia;
 import com.techdive.Banco.Clientes.Cliente;
-import com.techdive.Banco.Contas.Conta;
-import com.techdive.Banco.Contas.ContaCorrente;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,24 +46,13 @@ public class Banco {
         return false;
     }
 
-    public static int getContaCliente(String cpf) {
+    public static int getNumContaCliente(String cpf) {
         return mapaClienteConta.get(cpf);
     }
 
     public static Conta getConta(int numeroConta){
         return contas.get(numeroConta);
     }
-
-
-/*
-    public static boolean cadastraConta(Conta conta) {
-        if(conta != null) {
-            contas.put(conta.getIdConta(), conta);
-            return true;
-        }
-        return false;
-    }
-*/
 
     public static Agencia getAgencia(int numeroAgencia) {
         return agencias.get(numeroAgencia);

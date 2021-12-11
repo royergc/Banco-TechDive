@@ -23,11 +23,11 @@ public class Tester {
 
     public static ContaCorrente criaContaCorrente(Cliente cliente, String agencia) {
         System.out.println("Criando conta corrente");
-        //ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
+
         Banco.cadastraConta(cliente,agencia,1);
         System.out.println("Conta criada");
-        System.out.println(Banco.getContaCliente(cliente.getCpf()));
-        ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getContaCliente(cliente.getCpf()));
+        System.out.println(Banco.getNumContaCliente(cliente.getCpf()));
+        ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getNumContaCliente(cliente.getCpf()));
         System.out.println(conta);
         return conta;
     }
