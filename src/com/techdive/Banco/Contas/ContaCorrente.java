@@ -6,7 +6,7 @@ public class ContaCorrente extends Conta {
     private double usoLimiteChequeEspecial;
     private static final double fatorLimite = 0.50;
 
-    public ContaCorrente(String nome, String cpf, double rendaMensal, String agencia) {
+    protected ContaCorrente(String nome, String cpf, double rendaMensal, String agencia) {
         super(nome, cpf, rendaMensal, agencia);
         this.limiteChequeEspecial = super.getRendaMensal() * fatorLimite;
         this.usoLimiteChequeEspecial = 0;

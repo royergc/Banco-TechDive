@@ -1,7 +1,5 @@
 package com.techdive.Banco.Contas;
 
-import com.techdive.Banco.Banco;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +23,7 @@ public abstract class Conta {
     private DateTimeFormatter formatadorHora;
 
 
-    public Conta(String nome, String cpf, double rendaMensal, String agencia) {
+    protected Conta(String nome, String cpf, double rendaMensal, String agencia) {
         numConta++;
         this.idConta = numConta;
         this.nome = nome;

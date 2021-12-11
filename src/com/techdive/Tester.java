@@ -1,8 +1,7 @@
 package com.techdive;
 
 import com.techdive.Banco.Clientes.Cliente;
-import com.techdive.Banco.Agencia;
-import com.techdive.Banco.Banco;
+import com.techdive.Banco.Contas.Banco;
 import com.techdive.Banco.Contas.ContaCorrente;
 
 import java.util.ArrayList;
@@ -116,6 +115,8 @@ public class Tester {
         System.out.println(Banco.getConta(1));
         System.out.println(Banco.getConta(2));
         System.out.println(Banco.getConta(3));
+
+
 
         //Menu tela = new Menu();
     }

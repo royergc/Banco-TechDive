@@ -2,7 +2,7 @@ package com.techdive.Banco.Contas;
 
 public class ContaPoupanca extends Conta {
 
-    public ContaPoupanca(String nome, String cpf, double rendaMensal, String agencia) {
+    protected ContaPoupanca(String nome, String cpf, double rendaMensal, String agencia) {
         super(nome, cpf, rendaMensal, agencia);
     }
 

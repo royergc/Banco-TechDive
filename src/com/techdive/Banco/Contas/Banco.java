@@ -1,5 +1,6 @@
-package com.techdive.Banco;
+package com.techdive.Banco.Contas;
 
+import com.techdive.Banco.Agencia;
 import com.techdive.Banco.Clientes.Cliente;
 import com.techdive.Banco.Contas.Conta;
 import com.techdive.Banco.Contas.ContaCorrente;
@@ -33,9 +34,7 @@ public class Banco {
                 case 1:
                 default:
                     ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
-                    contas.put(conta.getIdConta(), conta);
-                    mapaClienteConta.put(conta.getCpf(),conta.getIdConta());
-                    System.out.println("Adicionada conta " + conta + " no Banco");
+                    registraConta(conta);
                     break;
                 case 2:
 //                    ContaPoupanca conta
@@ -80,4 +79,9 @@ public class Banco {
         return false;
     }
 
+    private static void registraConta(Conta conta){
+        contas.put(conta.getIdConta(), conta);
+        mapaClienteConta.put(conta.getCpf(),conta.getIdConta());
+        System.out.println("Adicionada conta " + conta + " no Banco");
+    }
 }
