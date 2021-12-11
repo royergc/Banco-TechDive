@@ -3,6 +3,7 @@ package com.techdive;
 import com.techdive.Banco.Clientes.Cliente;
 import com.techdive.Banco.Contas.Banco;
 import com.techdive.Banco.Contas.ContaCorrente;
+import com.techdive.Banco.Contas.Transacoes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class Tester {
 
     public static void main(String[] args) {
 
+
         Cliente guilherme = criaCliente("Guilherme", "03596463955", 1500);
         ContaCorrente ccGuilherme = criaContaCorrente(guilherme,"Florianopolis");
 
@@ -48,44 +50,55 @@ public class Tester {
         Cliente marilene = criaCliente("Marilene", "00249313901", 12000 );
         ContaCorrente ccMarilene = criaContaCorrente(marilene,"Florianopolis");
 
+        Transacoes transacoes = Transacoes.iniciaTransacoes();
+
         System.out.println("Deposita 10.000 na conta do Guilherme");
-        ccGuilherme.deposito(10000);
+        transacoes.registraDeposito(ccGuilherme,10000);
+        //ccGuilherme.deposito(10000);
         System.out.println("Saldo da conta do Guilherme: " + ccGuilherme.getSaldo());
 
         System.out.println("Deposita 50.000 na conta do Joao");
-        ccJoao.deposito(50000);
+        transacoes.registraDeposito(ccJoao,50000);
+        //ccJoao.deposito(50000);
         System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
 
         System.out.println("Saca 25.000 da conta do Joao");
-        ccJoao.saque(25000);
+        transacoes.registraSaque(ccJoao,25000);
+        //ccJoao.saque(25000);
         System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
 
         System.out.println("Deposita 10.000 na conta da Marilene");
-        ccMarilene.deposito(10000);
+        transacoes.registraDeposito(ccMarilene,10000);
+//        ccMarilene.deposito(10000);
         System.out.println("Saldo na conta da Marilene: " + ccMarilene.getSaldo());
 
         System.out.println("Transfere 5.000 do Guilherme pra Marilene");
-        ccGuilherme.transfere(ccMarilene,5000);
+        transacoes.registraTransferencia(ccGuilherme,ccMarilene,5000);
+//        ccGuilherme.transfere(ccMarilene,5000);
         System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Marilene : " + ccMarilene.getSaldo());
 
         System.out.println("Transfere 5.150 do Guilherme pro Joao");
-        ccGuilherme.transfere(ccJoao, 5150);
+        transacoes.registraTransferencia(ccGuilherme,ccJoao,5150);
+        //ccGuilherme.transfere(ccJoao, 5150);
         System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Joao : " + ccJoao.getSaldo());
 
         System.out.println("Tenta sacar 700 reais da conta do Guilherme");
-        ccGuilherme.saque(700);
+        transacoes.registraSaque(ccGuilherme,700);
+//        ccGuilherme.saque(700);
         System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
         System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
         System.out.println("Saldo Guilherme :" + ccGuilherme.getSaldo());
 
         System.out.println("Deposita 10.000 na conta do Guilherme");
-        ccGuilherme.deposito(10000);
+        transacoes.registraDeposito(ccGuilherme,10000);
+//        ccGuilherme.deposito(10000);
         System.out.println("Saldo Guilherme " + ccGuilherme.getSaldo());
         System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
         System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
 
         System.out.println("Transfere 32000 do Joao pra Marilene");
-        ccJoao.transfere(ccMarilene, 32000);
+        transacoes.registraTransferencia(ccJoao,ccMarilene,32000);
+//        ccJoao.transfere(ccMarilene, 32000);
         System.out.println("Saldo Joao: " + ccJoao.getSaldo());
         System.out.println("Limite Joao: " + ccJoao.getLimiteChequeEspecial());
         System.out.println("Uso do limite do Joao: " + ccJoao.getUsoLimiteChequeEspecial());

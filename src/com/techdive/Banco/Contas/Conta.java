@@ -36,7 +36,7 @@ public abstract class Conta {
         formatadorHora = DateTimeFormatter.ofPattern("HH:mm:ss");
     }
 
-    public boolean deposito(double valorDepositar) {
+    protected boolean deposito(double valorDepositar) {
         if(creditaConta(valorDepositar)) {
             extrato.add(LocalDate.now().format(formatadorData) + " - " +  LocalTime.now().format(formatadorHora) + " -> [Deposito]: R$ " + valorDepositar);
             return true;
@@ -44,7 +44,7 @@ public abstract class Conta {
         return false;
     }
 
-    public boolean saque(double valorSacar) {
+    protected boolean saque(double valorSacar) {
         if(debitaConta(valorSacar)) {
             extrato.add(LocalDate.now().format(formatadorData) + " - " + LocalTime.now().format(formatadorHora) + " -> [Saque]: R$ " + valorSacar);
             return true;
@@ -52,7 +52,7 @@ public abstract class Conta {
         return false;
     }
 
-    public boolean transfere(Conta contaDestino, double valorTransferir) {
+    protected boolean transfere(Conta contaDestino, double valorTransferir) {
         if(debitaConta(valorTransferir)) {
             if(contaDestino.creditaConta(valorTransferir)) {
                 extrato.add(LocalDate.now().format(formatadorData) + " - " + LocalTime.now().format(formatadorHora) + " -> [Transferencia realizada]: R$ " + valorTransferir + " para " + contaDestino.getNome());
