@@ -4,11 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Transacoes {
 
-    private List<String> transacoes;
+    private ArrayList<String> transacoes;
     private static Transacoes objetoTransacoes;
     private DateTimeFormatter formatadorData;
     private DateTimeFormatter formatadorHora;
@@ -22,49 +21,58 @@ public class Transacoes {
     static public Transacoes iniciaTransacoes(){
         if(objetoTransacoes == null) {
             objetoTransacoes = new Transacoes();
-            return objetoTransacoes;
         }
-        return null;
+        return objetoTransacoes;
     }
 
-    public boolean registraSaque(Conta conta, double valor) {
+    public boolean processaSaque(Conta conta, double valor) {
         if(conta.saque(valor)) {
 
             transacoes.add(LocalDate.now().format(formatadorData) + " "
                     + LocalTime.now().format(formatadorHora)
                     + " [Saque realizado] - R$ " + valor
                     + " [Conta] - " + conta.getIdConta()
-                    + " [Cliente] - " + conta.getNome() );
+                    + " [Cliente] - " + conta.getNome()
+                    + " [CPF] - " + conta.getCpf() );
             return true;
         }
         return false;
     }
 
-    public boolean registraDeposito(Conta conta, double valor) {
+    public boolean processaDeposito(Conta conta, double valor) {
         if(conta.deposito(valor)) {
             transacoes.add(LocalDate.now().format(formatadorData) + " "
                     + LocalTime.now().format(formatadorHora)
                     + " [Deposito realizado] - R$ " + valor
                     + " [Conta] - " + conta.getIdConta()
-                    + " [Cliente] - " + conta.getNome() );
+                    + " [Cliente] - " + conta.getNome()
+                    + " [CPF] - " + conta.getCpf() );
             return true;
         }
         return false;
     }
 
-    public boolean registraTransferencia(Conta contaOrigem, Conta contaDestino, double valor) {
+    public boolean processaTransferencia(Conta contaOrigem, Conta contaDestino, double valor) {
         if(contaOrigem.transfere(contaDestino, valor)) {
             transacoes.add(LocalDate.now().format(formatadorData) + " "
                     + LocalTime.now().format(formatadorHora)
                     + " [Transferência realizada] - R$ " + valor
                     + " [Conta Origem] - " + contaOrigem.getIdConta()
                     + " [Cliente] - " + contaOrigem.getNome()
+                    + " [CPF] - " + contaOrigem.getCpf()
                     + " -> [Conta Destino] - " + contaDestino.getIdConta()
-                    + "[Cliente] -  " + contaDestino.getNome() );
+                    + "[Cliente] -  " + contaDestino.getNome()
+                    + " [CPF] - " + contaDestino.getCpf() );
             return true;
         }
         return false;
     }
+
+    public ArrayList<String> getHistoricoTransacoes() {
+        return transacoes;
+    }
+
+
     /*
     registrarInvestimento
     */

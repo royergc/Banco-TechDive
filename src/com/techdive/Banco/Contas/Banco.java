@@ -1,8 +1,9 @@
 package com.techdive.Banco.Contas;
 
 import com.techdive.Banco.Agencia;
-import com.techdive.Banco.Clientes.Cliente;
+import com.techdive.Banco.Cliente;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +53,14 @@ public class Banco {
 
     public static Conta getConta(int numeroConta){
         return contas.get(numeroConta);
+    }
+
+    public static ArrayList<Conta> getContas() {
+        ArrayList<Conta> contasDoBanco = new ArrayList<>();
+        for(int idConta : contas.keySet()) {
+            contasDoBanco.add(contas.get(idConta));
+        }
+        return contasDoBanco;
     }
 
     public static Agencia getAgencia(int numeroAgencia) {

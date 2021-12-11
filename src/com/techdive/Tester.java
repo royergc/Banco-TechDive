@@ -1,9 +1,11 @@
 package com.techdive;
 
-import com.techdive.Banco.Clientes.Cliente;
+import com.techdive.Banco.Cliente;
 import com.techdive.Banco.Contas.Banco;
+import com.techdive.Banco.Contas.Conta;
 import com.techdive.Banco.Contas.ContaCorrente;
 import com.techdive.Banco.Contas.Transacoes;
+import com.techdive.Banco.Relatorios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,56 +55,56 @@ public class Tester {
         Transacoes transacoes = Transacoes.iniciaTransacoes();
 
         System.out.println("Deposita 10.000 na conta do Guilherme");
-        transacoes.registraDeposito(ccGuilherme,10000);
+        transacoes.processaDeposito(ccGuilherme,10000);
         //ccGuilherme.deposito(10000);
         System.out.println("Saldo da conta do Guilherme: " + ccGuilherme.getSaldo());
 
         System.out.println("Deposita 50.000 na conta do Joao");
-        transacoes.registraDeposito(ccJoao,50000);
+        transacoes.processaDeposito(ccJoao,50000);
         //ccJoao.deposito(50000);
         System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
 
         System.out.println("Saca 25.000 da conta do Joao");
-        transacoes.registraSaque(ccJoao,25000);
+        transacoes.processaSaque(ccJoao,25000);
         //ccJoao.saque(25000);
         System.out.println("Saldo na conta do Joao: " + ccJoao.getSaldo());
 
         System.out.println("Deposita 10.000 na conta da Marilene");
-        transacoes.registraDeposito(ccMarilene,10000);
+        transacoes.processaDeposito(ccMarilene,10000);
 //        ccMarilene.deposito(10000);
         System.out.println("Saldo na conta da Marilene: " + ccMarilene.getSaldo());
 
         System.out.println("Transfere 5.000 do Guilherme pra Marilene");
-        transacoes.registraTransferencia(ccGuilherme,ccMarilene,5000);
+        transacoes.processaTransferencia(ccGuilherme,ccMarilene,5000);
 //        ccGuilherme.transfere(ccMarilene,5000);
         System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Marilene : " + ccMarilene.getSaldo());
 
         System.out.println("Transfere 5.150 do Guilherme pro Joao");
-        transacoes.registraTransferencia(ccGuilherme,ccJoao,5150);
+        transacoes.processaTransferencia(ccGuilherme,ccJoao,5150);
         //ccGuilherme.transfere(ccJoao, 5150);
         System.out.println("Saldo Guilherme: " + ccGuilherme.getSaldo() + " Saldo Joao : " + ccJoao.getSaldo());
 
         System.out.println("Tenta sacar 700 reais da conta do Guilherme");
-        transacoes.registraSaque(ccGuilherme,700);
+        transacoes.processaSaque(ccGuilherme,700);
 //        ccGuilherme.saque(700);
         System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
         System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
         System.out.println("Saldo Guilherme :" + ccGuilherme.getSaldo());
 
         System.out.println("Deposita 10.000 na conta do Guilherme");
-        transacoes.registraDeposito(ccGuilherme,10000);
+        transacoes.processaDeposito(ccGuilherme,10000);
 //        ccGuilherme.deposito(10000);
         System.out.println("Saldo Guilherme " + ccGuilherme.getSaldo());
         System.out.println("Limite Guilherme " + ccGuilherme.getLimiteChequeEspecial());
         System.out.println("Uso Limite Guilherme " + ccGuilherme.getUsoLimiteChequeEspecial());
 
         System.out.println("Transfere 32000 do Joao pra Marilene");
-        transacoes.registraTransferencia(ccJoao,ccMarilene,32000);
+        transacoes.processaTransferencia(ccJoao,ccMarilene,32000);
 //        ccJoao.transfere(ccMarilene, 32000);
         System.out.println("Saldo Joao: " + ccJoao.getSaldo());
         System.out.println("Limite Joao: " + ccJoao.getLimiteChequeEspecial());
         System.out.println("Uso do limite do Joao: " + ccJoao.getUsoLimiteChequeEspecial());
-        System.out.println("Saldo MArilene : " + ccMarilene.getSaldo());
+        System.out.println("Saldo Marilene : " + ccMarilene.getSaldo());
 
         System.out.println("Imprimindo extrato Guilherme");
         List<String> extratoGui = new ArrayList<>();
@@ -131,6 +133,31 @@ public class Tester {
         System.out.println(Banco.getConta(3));
 
         System.out.println(Banco.getConta(Banco.getNumContaCliente(guilherme.getCpf())));
+
+        Relatorios relatorios = new Relatorios();
+        ArrayList<String> historicoMarilene = relatorios.getHistoricoCliente(marilene);
+        System.out.println("-------------------- IMPRIMINDO HISTORICO MARILENE -----------------");
+        for(int i = 0; i < historicoMarilene.size(); i++) {
+            System.out.println(historicoMarilene.get(i));
+        }
+
+        ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("Saque");
+        System.out.println("-------------------- IMPRIMINDO HISTORICO Saques -----------------");
+        for(int i = 0; i < historicoSaques.size(); i++) {
+            System.out.println(historicoSaques.get(i));
+        }
+
+
+        ArrayList<String> historicoTransf = relatorios.getHistoricoOperacao("Transferencia");
+        System.out.println("-------------------- IMPRIMINDO HISTORICO Transferencias -----------------");
+        for(int i = 0; i < historicoTransf.size(); i++) {
+            System.out.println(historicoTransf.get(i));
+        }
+
+        ArrayList<Conta> relatorioContas = relatorios.getTodasContasDoBanco();
+        System.out.println("------------- IMPRIMINDO TODAS AS CONTAS DO BANCO ------------------");
+        relatorioContas.forEach(System.out::println);
+
 
 
 
