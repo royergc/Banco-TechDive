@@ -1,6 +1,4 @@
-package com.techdive.Banco.Relatorios;
-
-import com.techdive.Banco.Contas.Conta;
+package com.techdive.Banco.Contas;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
