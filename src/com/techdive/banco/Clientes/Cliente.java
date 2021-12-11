@@ -71,9 +71,7 @@ public class Cliente {
             return false;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
     public String getCpf() {
         return cpf;
@@ -81,5 +79,12 @@ public class Cliente {
 
     public double getRendaMensal() {
         return rendaMensal;
+    }
+
+    @Override
+    public String toString() {
+        return "[Cliente] = " + nome + " - " +
+                "[CPF] = " + cpf + " - " +
+                "[RendaMensal] = " + rendaMensal;
     }
 }
