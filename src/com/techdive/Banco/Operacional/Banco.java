@@ -1,6 +1,5 @@
-package com.techdive.Banco.Contas;
+package com.techdive.Banco.Operacional;
 
-import com.techdive.Banco.Agencia;
 import com.techdive.Banco.Cliente;
 
 import java.util.ArrayList;
@@ -30,16 +29,18 @@ public class Banco {
     public static boolean cadastraConta(Cliente cliente, String agencia, int tipoConta) {
         if(cliente != null) {
             switch(tipoConta) {
-                case 1:
-                default:
-                    ContaCorrente conta = new ContaCorrente(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
-                    registraConta(conta);
-                    break;
                 case 2:
-//                    ContaPoupanca conta
+                    ContaPoupanca contaPoupanca = new ContaPoupanca(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
+                    registraConta(contaPoupanca);
                     break;
                 case 3:
-//                    ContaInvestimento conta
+                    ContaInvestimento contaInvestimento = new ContaInvestimento(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
+                    registraConta(contaInvestimento);
+                    break;
+                case 1:
+                default:
+                    ContaCorrente contaCorrente = new ContaCorrente(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);
+                    registraConta(contaCorrente);
                     break;
             }
             return true;
@@ -55,12 +56,20 @@ public class Banco {
         return contas.get(numeroConta);
     }
 
-    public static ArrayList<Conta> getContas() {
+    public static ArrayList<Conta> getListaContas() {
         ArrayList<Conta> contasDoBanco = new ArrayList<>();
         for(int idConta : contas.keySet()) {
             contasDoBanco.add(contas.get(idConta));
         }
         return contasDoBanco;
+    }
+
+    public static ArrayList<Cliente> getListaClientes() {
+        ArrayList<Cliente> clientesDoBanco = new ArrayList<>();
+        for(String cpf : clientes.keySet()) {
+            clientesDoBanco.add(clientes.get(cpf));
+        }
+        return clientesDoBanco;
     }
 
     public static Agencia getAgencia(int numeroAgencia) {

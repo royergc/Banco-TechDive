@@ -1,10 +1,10 @@
 package com.techdive;
 
 import com.techdive.Banco.Cliente;
-import com.techdive.Banco.Contas.Banco;
-import com.techdive.Banco.Contas.Conta;
-import com.techdive.Banco.Contas.ContaCorrente;
-import com.techdive.Banco.Contas.Transacoes;
+import com.techdive.Banco.Operacional.Banco;
+import com.techdive.Banco.Operacional.Conta;
+import com.techdive.Banco.Operacional.ContaCorrente;
+import com.techdive.Banco.Operacional.Transacoes;
 import com.techdive.Banco.Relatorios;
 
 import java.util.ArrayList;
@@ -156,7 +156,26 @@ public class Tester {
 
         ArrayList<Conta> relatorioContas = relatorios.getTodasContasDoBanco();
         System.out.println("------------- IMPRIMINDO TODAS AS CONTAS DO BANCO ------------------");
-        relatorioContas.forEach(System.out::println);
+//        relatorioContas.forEach(System.out::println);
+        for (Conta conta : relatorioContas) {
+            System.out.println(conta);
+        }
+
+        ArrayList<ContaCorrente> relatorioContasCorrente = relatorios.getContasCorrente();
+        System.out.println(" ----------- IMPRIMINDO AS CONTAS CORRENTE ------------");
+        for(ContaCorrente conta : relatorioContasCorrente) {
+            System.out.println(conta);
+        }
+
+        ArrayList<ContaCorrente> relatorioContasNegativas = relatorios.getContasSaldoInferior(0);
+        System.out.println(" ----------- IMPRIMINDO AS CONTAS NEGATIVAS ------------");
+        for (ContaCorrente conta : relatorioContasNegativas) {
+            System.out.println(conta);
+        }
+
+        double valortotaldobanco = relatorios.getValorInvestidoTotal();
+        System.out.println(" - VALOR TOTAL INVESTIDO NO BANCO : " + valortotaldobanco);
+
 
 
 

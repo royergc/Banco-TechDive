@@ -1,4 +1,4 @@
-package com.techdive.Banco.Contas;
+package com.techdive.Banco.Operacional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

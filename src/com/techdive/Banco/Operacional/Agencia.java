@@ -1,4 +1,4 @@
-package com.techdive.Banco;
+package com.techdive.Banco.Operacional;
 
 public class Agencia {
     private int numAgencia;

@@ -1,4 +1,4 @@
-package com.techdive.Banco.Contas;
+package com.techdive.Banco.Operacional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 public class Transacoes {
 
-    private ArrayList<String> transacoes;
     private static Transacoes objetoTransacoes;
+
+    private ArrayList<String> transacoes;
+
     private DateTimeFormatter formatadorData;
     private DateTimeFormatter formatadorHora;
 
