@@ -23,6 +23,7 @@ public class MenuCadastros {
         System.out.println("2 - Cadastrar nova conta corrente");
         System.out.println("3 - Cadastrar nova conta poupanca");
         System.out.println("4 - Cadastrar nova conta investimento");
+        System.out.println("5 - Alterar dados cadastrais");
         System.out.println("0 - Retornar ao menu principal");
         System.out.println("");
         System.out.println("Opcao: ");
@@ -128,10 +129,17 @@ public class MenuCadastros {
                         Banco.cadastraConta(cliente,agencia,1);
                         int numConta = Banco.getNumContaCliente(cpf);
                         ContaCorrente conta = (ContaCorrente) Banco.getConta(numConta);
-                        limpaTela();
-                        quebraLinha();
-                        System.out.println("Conta Corrente cadastrada corretamente");
-                        System.out.println(conta);
+                        if(conta == null)
+                        {
+                            quebraLinha();
+                            System.out.println("ERRO: Conta inexistente");
+                        }
+                        else {
+                            limpaTela();
+                            quebraLinha();
+                            System.out.println("Conta Corrente cadastrada corretamente");
+                            System.out.println(conta);
+                        }
                         quebraLinha();
                         System.out.println("");
                         System.out.println("Pressione qualquer tecla para prosseguir");
@@ -240,6 +248,9 @@ public class MenuCadastros {
                         System.out.println("Pressione qualquer tecla para prosseguir");
                         entrada.nextLine();
                     }
+                    break;
+                case 5:
+                    // alterar dados cadastrais
                     break;
                 default:
                     limpaTela();

@@ -74,7 +74,9 @@ public class Cliente {
             return false;
     }
 
-    public String getNome() { return nome; }
+    public String getNome() {
+        return nome;
+    }
 
     public String getCpf() {
         return cpf;
@@ -82,6 +84,14 @@ public class Cliente {
 
     public double getRendaMensal() {
         return rendaMensal;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setRendaMensal(double rendaMensal) {
+        this.rendaMensal = rendaMensal;
     }
 
     @Override

@@ -117,21 +117,21 @@ public class Tester {
 
         System.out.println("Imprimindo extrato Guilherme");
         List<String> extratoGui = new ArrayList<>();
-        extratoGui = ccGuilherme.getExtrato(1);
+        extratoGui = ccGuilherme.getExtrato();
         for(int i = 0; i < extratoGui.size(); i++) {
             System.out.println(extratoGui.get(i));
         }
 
         System.out.println("Imprimindo extrato Joao");
         List<String> extratoJoao = new ArrayList<>();
-        extratoJoao = ccJoao.getExtrato(1);
+        extratoJoao = ccJoao.getExtrato();
         for(int i = 0; i < extratoJoao.size(); i++) {
             System.out.println(extratoJoao.get(i));
         }
 
         System.out.println("Imprimindo extrato Marilene");
         List<String> extratoMarilene = new ArrayList<>();
-        extratoMarilene = ccMarilene.getExtrato(1);
+        extratoMarilene = ccMarilene.getExtrato();
         for(int i = 0; i < extratoMarilene.size(); i++) {
             System.out.println(extratoMarilene.get(i));
         }

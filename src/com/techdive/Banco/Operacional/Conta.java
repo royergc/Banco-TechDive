@@ -78,7 +78,7 @@ public abstract class Conta {
         return saldo;
     }
 
-    public List<String> getExtrato(int periodo) {
+    public List<String> getExtrato() {
         extrato.add("Saldo atual: R$ " + getSaldo());
         return extrato;
     }

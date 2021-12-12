@@ -48,6 +48,14 @@ public class Banco {
         return false;
     }
 
+    public static boolean alteraCadastro(Conta conta,String nome, double rendaMensal, String agencia){
+        if(conta != null && ( agencia.equals("Florianopolis") || agencia.equals("Sao Jose"))) {
+        conta.alteraCadastro(nome,rendaMensal,agencia);
+        return true;
+        }
+        return false;
+    }
+
     public static int getNumContaCliente(String cpf) {
         return mapaClienteConta.get(cpf);
     }
