@@ -2,6 +2,7 @@ package com.techdive.InterfaceLinhaComando;
 
 import com.techdive.Banco.Operacional.Conta;
 import com.techdive.Banco.Operacional.ContaCorrente;
+import com.techdive.Banco.Operacional.ContaInvestimento;
 import com.techdive.Banco.Operacional.ContaPoupanca;
 import com.techdive.Banco.Relatorios;
 
@@ -86,6 +87,17 @@ public class MenuRelatorios {
                     break;
                 case 4:
                     // listar contas investimento
+                    ArrayList<ContaInvestimento> relatorioContasInvestimento = relatorios.getContasInvestimento();
+                    quebraLinha();
+                    System.out.println("Lista das contas investimento do banco");
+                    quebraLinha();
+                    for(ContaInvestimento conta : relatorioContasInvestimento) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 5:
                     ArrayList<ContaCorrente> relatorioContasNegativas = relatorios.getContasSaldoInferior(0);
@@ -109,16 +121,15 @@ public class MenuRelatorios {
                     entrada.nextLine();
                     break;
                 case 7:
-                    ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("[");
+                    ArrayList<String> historicoOperacoes = relatorios.getHistoricoOperacao("[");
                     limpaTela();
                     quebraLinha();
                     System.out.println("O sistema ira imprimir o historico de todas as transacoes realizadas no banco");
                     quebraLinha();
-                    System.out.println("");
                     System.out.println("Pressione qualquer tecla para prosseguir");
                     entrada.nextLine();
-                    for(int i = 0; i < historicoSaques.size(); i++) {
-                        System.out.println(historicoSaques.get(i));
+                    for(String operacao : historicoOperacoes) {
+                        System.out.println(operacao);
                     }
                     quebraLinha();
                     System.out.println("");
@@ -134,5 +145,4 @@ public class MenuRelatorios {
             }
         } while(opcao != 0);
     }
-
 }

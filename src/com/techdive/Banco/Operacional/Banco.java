@@ -27,7 +27,7 @@ public class Banco {
     }
 
     public static boolean cadastraConta(Cliente cliente, String agencia, int tipoConta) {
-        if(cliente != null) {
+        if(cliente != null && ( agencia.equals("Florianopolis") || agencia.equals("Sao Jose"))) {
             switch(tipoConta) {
                 case 2:
                     ContaPoupanca contaPoupanca = new ContaPoupanca(cliente.getNome(), cliente.getCpf(), cliente.getRendaMensal(),agencia);

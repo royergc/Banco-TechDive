@@ -210,9 +210,6 @@ public class MenuOperacoes {
                 case 7:
                     // alterar dados cadastrais
                     break;
-                case 0 :
-                    // voltar menuPrincipal
-                    break;
                 default:
                     limpaTela();
                     System.out.println("Opção inválida! Tente novamente");

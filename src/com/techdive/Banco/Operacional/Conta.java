@@ -64,15 +64,10 @@ public abstract class Conta {
         return false;
     }
 
-    public boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
-        if(!agencia.equals("Florianopolis") || !agencia.equals("Sao Jose")) {
-            return false;
-        }
-
+    protected boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
         if(rendaMensal < 0 ) {
             return false;
         }
-
         this.nome = nome;
         this.rendaMensal = rendaMensal;
         this.agencia = agencia;

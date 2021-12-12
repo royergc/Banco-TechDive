@@ -23,7 +23,6 @@ public class MenuCadastros {
         System.out.println("2 - Cadastrar nova conta corrente");
         System.out.println("3 - Cadastrar nova conta poupanca");
         System.out.println("4 - Cadastrar nova conta investimento");
-        System.out.println("5 - Cadastrar nova agencia bancaria");
         System.out.println("0 - Retornar ao menu principal");
         System.out.println("");
         System.out.println("Opcao: ");
@@ -242,9 +241,6 @@ public class MenuCadastros {
                         entrada.nextLine();
                     }
                     break;
-//                case 5:
-//                    // cadastrar agencia
-//                    break;
                 default:
                     limpaTela();
                     System.out.println("Opção inválida! Tente novamente");
