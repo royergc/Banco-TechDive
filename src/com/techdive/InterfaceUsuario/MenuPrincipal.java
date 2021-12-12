@@ -3,9 +3,6 @@ package com.techdive.InterfaceUsuario;
 import java.util.Scanner;
 
 import static com.techdive.InterfaceUsuario.InterfaceUsuario.*;
-import static com.techdive.InterfaceUsuario.MenuCadastros.chamaMenuCadastros;
-import static com.techdive.InterfaceUsuario.MenuOperacoes.chamaMenuOperacoes;
-import static com.techdive.InterfaceUsuario.MenuRelatorios.chamaMenuRelatorios;
 
 
 public class MenuPrincipal {
@@ -36,18 +33,18 @@ public class MenuPrincipal {
 
             switch(opcao){
                 case 1:
-                    chamaMenuCadastros();
+                    MenuCadastros.chamaMenuCadastros();
                     break;
 
                 case 2:
-                    chamaMenuOperacoes();
+                    MenuOperacoes.chamaMenuOperacoes();
                     break;
 
                 case 3:
-                    chamaMenuRelatorios();
+                    MenuRelatorios.chamaMenuRelatorios();
                     break;
                 case 0 :
-                    sairSistema();1
+                    sairSistema();
 
                     break;
                 default:
@@ -56,5 +53,4 @@ public class MenuPrincipal {
             }
         } while(opcao != 0);
     }
-
 }
