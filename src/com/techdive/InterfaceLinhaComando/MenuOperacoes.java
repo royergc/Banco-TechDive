@@ -5,9 +5,7 @@ import com.techdive.Banco.Operacional.*;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.quebraLinha;
-import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.limpaTela;
-import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.pressioneParaContinuar;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.*;
 
 public class MenuOperacoes {
 
@@ -69,9 +67,9 @@ public class MenuOperacoes {
 
     public static void pedeExtrato() {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Por favor, digite o numero da conta: ");
-        int numConta = entrada.nextInt();
-        entrada.nextLine();
+
+        int numConta = perguntaNumConta();
+//        entrada.nextLine();
         Conta conta = Banco.getConta(numConta);
         if(conta == null)
         {
@@ -95,9 +93,7 @@ public class MenuOperacoes {
     public static void pedeDeposito() {
         Scanner entrada = new Scanner(System.in);
         Transacoes transacoes = Transacoes.iniciaTransacoes();
-        System.out.println("Por favor, digite o numero da conta a ser depositada: ");
-        int numConta = entrada.nextInt();
-        entrada.nextLine();
+        int numConta = perguntaNumConta();
         Conta conta = Banco.getConta(numConta);
         if (conta == null) {
             quebraLinha();
@@ -122,9 +118,8 @@ public class MenuOperacoes {
     public static void pedeSaque() {
         Scanner entrada = new Scanner(System.in);
         Transacoes transacoes = Transacoes.iniciaTransacoes();
-        System.out.println("Por favor, digite o numero da conta a ser feito o saque: ");
-        int numConta = entrada.nextInt();
-        entrada.nextLine();
+        int numConta = perguntaNumConta();
+//        entrada.nextLine();
         Conta conta = Banco.getConta(numConta);
         if(conta == null)
         {
@@ -139,17 +134,21 @@ public class MenuOperacoes {
             System.out.println("Por favor, digite o valor do saque: ");
             double valor = entrada.nextDouble();
             entrada.nextLine();
-            transacoes.processaSaque(conta, valor);
-            quebraLinha();
-            System.out.println("Saque realizado");
-            System.out.println("Novo saldo da conta: " + conta.getSaldo());
-
+            if(transacoes.processaSaque(conta, valor)) {
+                quebraLinha();
+                System.out.println("Saque realizado");
+                System.out.println("Novo saldo da conta: " + conta.getSaldo());
+            }
+            else {
+                quebraLinha();
+                System.out.println("ERRO: Saque nao realizado");
+                System.out.println("Verifique seu saldo e seu limite");
+            }
         }
         pressioneParaContinuar();
     }
 
     public static void pedeTransferencia() {
-        // transferencia
         Scanner entrada = new Scanner(System.in);
         Transacoes transacoes = Transacoes.iniciaTransacoes();
         System.out.println("Por favor, digite o numero da conta de origem para a transferencia: ");
@@ -193,16 +192,20 @@ public class MenuOperacoes {
         System.out.println("Por favor, digite o valor a ser transferido: ");
         double valor = entrada.nextDouble();
         entrada.nextLine();
-        transacoes.processaTransferencia(conta,contaDestino,valor);
-        quebraLinha();
-        System.out.println("Transferencia realizada");
-        System.out.println("Novo saldo da conta de origem: " + conta.getSaldo());
-        System.out.println("Novo saldo da conta de destino: " + contaDestino.getSaldo());
+        if(transacoes.processaTransferencia(conta,contaDestino,valor)) {
+            quebraLinha();
+            System.out.println("Transferencia realizada");
+            System.out.println("Novo saldo da conta de origem: " + conta.getSaldo());
+            System.out.println("Novo saldo da conta de destino: " + contaDestino.getSaldo());
+        }
+        else {
+            System.out.println("ERRO: Transferencia nao realizada");
+            System.out.println("Verifique o saldo e o limite na conta origem");
+        }
         pressioneParaContinuar();
     }
 
     public static void pedeSimulacaoPoupanca() {
-        // simular rendimento poupanca
         Transacoes transacoes = Transacoes.iniciaTransacoes();
         Scanner entrada = new Scanner(System.in);
         System.out.println("Por favor, digite o numero da conta poupanca para a simulacao de rendimento: ");
@@ -244,7 +247,6 @@ public class MenuOperacoes {
     }
 
     public static void pedeEscolhaInvestimento() {
-        // escolher investimento conta investimento
         Scanner entrada = new Scanner(System.in);
         Transacoes transacoes = Transacoes.iniciaTransacoes();
         System.out.println("Por favor, digite o numero da conta investimento para a selecionar opcoes de investimento: ");

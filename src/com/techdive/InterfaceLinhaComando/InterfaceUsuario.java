@@ -30,4 +30,12 @@ public class InterfaceUsuario {
         System.out.println("Por favor, pressione qualquer tecla para continuar");
         entrada.nextLine();
     }
+
+    public static int perguntaNumConta() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Por favor, digite o numero da conta: ");
+        return entrada.nextInt();
+    }
 }
+
+

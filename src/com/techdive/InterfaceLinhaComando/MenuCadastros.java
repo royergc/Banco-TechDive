@@ -215,7 +215,6 @@ public class MenuCadastros {
 
     public static void pedeCadastrarContaInvestimento() {
         Scanner entrada = new Scanner(System.in);
-        // cadastrar conta investimento
         limpaTela();
         quebraLinha();
         System.out.println("Cadastro de Conta Investimento");

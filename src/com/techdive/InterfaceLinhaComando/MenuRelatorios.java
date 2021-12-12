@@ -86,7 +86,6 @@ public class MenuRelatorios {
                     entrada.nextLine();
                     break;
                 case 4:
-                    // listar contas investimento
                     ArrayList<ContaInvestimento> relatorioContasInvestimento = relatorios.getContasInvestimento();
                     quebraLinha();
                     System.out.println("Lista das contas investimento do banco");
@@ -135,9 +134,6 @@ public class MenuRelatorios {
                     System.out.println("");
                     System.out.println("Pressione qualquer tecla para prosseguir");
                     entrada.nextLine();
-                    break;
-                case 0 :
-                    // voltar menuPrincipal
                     break;
                 default:
                     limpaTela();
