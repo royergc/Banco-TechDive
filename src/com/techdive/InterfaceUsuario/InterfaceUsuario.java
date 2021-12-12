@@ -2,8 +2,12 @@ package com.techdive.InterfaceUsuario;
 
 import com.techdive.Banco.Cliente;
 import com.techdive.Banco.Operacional.Banco;
+import com.techdive.Banco.Operacional.Conta;
 import com.techdive.Banco.Operacional.ContaCorrente;
+import com.techdive.Banco.Operacional.Transacoes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InterfaceUsuario {
@@ -175,6 +179,7 @@ public class InterfaceUsuario {
 
     public static void chamaMenuOperacoes() {
         int opcao;
+        Transacoes transacoes = Transacoes.iniciaTransacoes();
         Scanner entrada = new Scanner(System.in);
 
         do{
@@ -183,15 +188,66 @@ public class InterfaceUsuario {
 
             switch(opcao){
                 case 1:
-                    // extrato
+                    System.out.println("Por favor, digite o numero da conta a ser depositada: ");
+                    int numConta = entrada.nextInt();
+                    Conta conta = Banco.getConta(numConta);
+                    quebraLinha();
+                    System.out.println("A Conta selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    List<String> extratoConta;
+                    extratoConta = conta.getExtrato(1);
+                    for(String linhaExtrato : extratoConta) {
+                        System.out.println(linhaExtrato);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor, digite qualquer tecla para continuar");
+                    entrada.nextLine();
+                    entrada.nextLine();
+
                     break;
 
                 case 2:
-                    // deposito
+                    System.out.println("Por favor, digite o numero da conta a ser depositada: ");
+                    numConta = entrada.nextInt();
+                    conta = Banco.getConta(numConta);
+                    quebraLinha();
+                    System.out.println("A Conta selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    System.out.println("Por favor, digite o valor a ser depositado: ");
+                    double valor = entrada.nextDouble();
+                    transacoes.processaDeposito(conta,valor);
+                    quebraLinha();
+                    System.out.println("Deposito realizado");
+                    System.out.println("Novo saldo da conta: " + conta.getSaldo());
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor, digite qualquer tecla para continuar");
+                    entrada.nextLine();
+                    entrada.nextLine();
                     break;
 
                 case 3:
-                    // saque
+                    System.out.println("Por favor, digite o numero da conta a ser feito o saque: ");
+                    numConta = entrada.nextInt();
+                    conta = Banco.getConta(numConta);
+                    quebraLinha();
+                    System.out.println("A Conta selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    System.out.println("Por favor, digite o valor do saque: ");
+                    double valor = entrada.nextDouble();
+                    transacoes.processaSaque(conta,valor);
+                    quebraLinha();
+                    System.out.println("Saque realizado");
+                    System.out.println("Novo saldo da conta: " + conta.getSaldo());
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor, digite qualquer tecla para continuar");
+                    entrada.nextLine();
+                    entrada.nextLine();
                     break;
                 case 4:
                     // transferencia
