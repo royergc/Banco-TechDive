@@ -9,8 +9,7 @@ import com.techdive.Banco.Relatorios;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.quebraLinha;
-import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.limpaTela;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.*;
 
 public class MenuRelatorios {
 
@@ -46,69 +45,84 @@ public class MenuRelatorios {
             switch(opcao){
                 case 1:
                     ArrayList<Conta> relatorioContas = relatorios.getTodasContasDoBanco();
-                    quebraLinha();
-                    System.out.println("Lista das contas do banco");
-                    quebraLinha();
-                    for (Conta conta : relatorioContas) {
-                        System.out.println(conta);
+                    if(relatorioContas.size() > 0) {
+                        quebraLinha();
+                        System.out.println("Lista das contas do banco");
+                        quebraLinha();
+                        for (Conta conta : relatorioContas) {
+                            System.out.println(conta);
+                        }
                     }
-                    quebraLinha();
-                    System.out.println("");
-                    System.out.println("Por favor pressione qualquer tecla para continuar");
-                    entrada.nextLine();
+                    else {
+                        quebraLinha();
+                        System.out.println("Nenhuma conta cadastrada");
+                    }
+                    pressioneParaContinuar();
                     break;
 
                 case 2:
                     ArrayList<ContaCorrente> relatorioContasCorrente = relatorios.getContasCorrente();
-                    quebraLinha();
-                    System.out.println("Lista das contas correntes do banco");
-                    quebraLinha();
-                    for(ContaCorrente conta : relatorioContasCorrente) {
-                        System.out.println(conta);
+                    if(relatorioContasCorrente.size() > 0 ) {
+                        quebraLinha();
+                        System.out.println("Lista das contas correntes do banco");
+                        quebraLinha();
+                        for(ContaCorrente conta : relatorioContasCorrente) {
+                            System.out.println(conta);
+                        }
                     }
-                    quebraLinha();
-                    System.out.println("");
-                    System.out.println("Por favor pressione qualquer tecla para continuar");
-                    entrada.nextLine();
+                    else {
+                        quebraLinha();
+                        System.out.println("Nenhuma conta corrente cadastrada");
+                    }
+                    pressioneParaContinuar();
                     break;
 
                 case 3:
                     ArrayList<ContaPoupanca> relatorioContasPoupanca = relatorios.getContasPoupanca();
-                    quebraLinha();
-                    System.out.println("Lista das contas poupanca do banco");
-                    quebraLinha();
-                    for(ContaPoupanca conta : relatorioContasPoupanca) {
-                        System.out.println(conta);
+                    if(relatorioContasPoupanca.size() > 0 ) {
+                        quebraLinha();
+                        System.out.println("Lista das contas poupanca do banco");
+                        quebraLinha();
+                        for (ContaPoupanca conta : relatorioContasPoupanca) {
+                            System.out.println(conta);
+                        }
                     }
-                    quebraLinha();
-                    System.out.println("");
-                    System.out.println("Por favor pressione qualquer tecla para continuar");
-                    entrada.nextLine();
+                    else {
+                        quebraLinha();
+                        System.out.println("Nenhuma conta poupança cadastrada");
+                    }
+                    pressioneParaContinuar();
                     break;
                 case 4:
                     ArrayList<ContaInvestimento> relatorioContasInvestimento = relatorios.getContasInvestimento();
-                    quebraLinha();
-                    System.out.println("Lista das contas investimento do banco");
-                    quebraLinha();
-                    for(ContaInvestimento conta : relatorioContasInvestimento) {
-                        System.out.println(conta);
+                    if(relatorioContasInvestimento.size() > 0) {
+                        quebraLinha();
+                        System.out.println("Lista das contas investimento do banco");
+                        quebraLinha();
+                        for(ContaInvestimento conta : relatorioContasInvestimento) {
+                            System.out.println(conta);
+                        }
                     }
-                    quebraLinha();
-                    System.out.println("");
-                    System.out.println("Por favor pressione qualquer tecla para continuar");
-                    entrada.nextLine();
+                    else {
+                        quebraLinha();
+                        System.out.println("Nenhuma conta investimento cadastrada");
+                    }
+                    pressioneParaContinuar();
                     break;
                 case 5:
                     ArrayList<ContaCorrente> relatorioContasNegativas = relatorios.getContasSaldoInferior(0);
-                    System.out.println("Lista das contas com saldo negativo no banco");
-                    quebraLinha();
-                    for (ContaCorrente conta : relatorioContasNegativas) {
-                        System.out.println(conta);
+                    if(relatorioContasNegativas.size() > 0 ) {
+                        System.out.println("Lista das contas com saldo negativo no banco");
+                        quebraLinha();
+                        for (ContaCorrente conta : relatorioContasNegativas) {
+                            System.out.println(conta);
+                        }
                     }
-                    quebraLinha();
-                    System.out.println("");
-                    System.out.println("Por favor pressione qualquer tecla para continuar");
-                    entrada.nextLine();
+                    else {
+                        quebraLinha();
+                        System.out.println("Nao ha contas com saldo negativo no banco");
+                    }
+                    pressioneParaContinuar();
                     break;
                 case 6:
                     double valortotaldobanco = relatorios.getTotalSaldos();
