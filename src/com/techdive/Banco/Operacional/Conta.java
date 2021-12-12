@@ -97,12 +97,12 @@ public abstract class Conta {
 
     @Override
     public String toString() {
-        return "[Conta] = " + idConta + " - " +
-                "[Nome cliente] = " + nome + " - " +
-                "[CPF] = " + cpf + " - " +
-                "[RendaMensal] = " + rendaMensal + " - " +
-                "[Agencia] = " + agencia + " - " +
-                "[Saldo] = " + saldo;
+        return "[Conta] = " + getIdConta() + " - " +
+                "[Nome cliente] = " + getNome() + " - " +
+                "[CPF] = " + getCpf() + " - " +
+                "[RendaMensal] = " + getRendaMensal() + " - " +
+                "[Agencia] = " + getAgencia() + " - " +
+                "[Saldo] = " + getSaldo();
     }
 
     protected boolean creditaConta(double valorCreditar) {
