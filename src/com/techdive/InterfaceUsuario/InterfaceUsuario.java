@@ -23,6 +23,7 @@ public class InterfaceUsuario {
         do{
             menuPrincipal();
             opcao = entrada.nextInt();
+            entrada.nextLine();
 
             switch(opcao){
                 case 1:
@@ -53,6 +54,7 @@ public class InterfaceUsuario {
         do{
             menuCadastros();
             opcao = entrada.nextInt();
+            entrada.nextLine();
 
             switch(opcao){
                 case 1:
@@ -185,11 +187,14 @@ public class InterfaceUsuario {
         do{
             menuOperacoes();
             opcao = entrada.nextInt();
+            entrada.nextLine();
 
             switch(opcao){
                 case 1:
-                    System.out.println("Por favor, digite o numero da conta a ser depositada: ");
+                    System.out.println("Por favor, digite o numero da conta que deseja tirar o extrato0" +
+                            ": ");
                     int numConta = entrada.nextInt();
+                    entrada.nextLine();
                     Conta conta = Banco.getConta(numConta);
                     quebraLinha();
                     System.out.println("A Conta selecionada foi: ");
@@ -204,13 +209,12 @@ public class InterfaceUsuario {
                     System.out.println("");
                     System.out.println("Por favor, digite qualquer tecla para continuar");
                     entrada.nextLine();
-                    entrada.nextLine();
-
                     break;
 
                 case 2:
                     System.out.println("Por favor, digite o numero da conta a ser depositada: ");
                     numConta = entrada.nextInt();
+                    entrada.nextLine();
                     conta = Banco.getConta(numConta);
                     quebraLinha();
                     System.out.println("A Conta selecionada foi: ");
@@ -218,6 +222,7 @@ public class InterfaceUsuario {
                     quebraLinha();
                     System.out.println("Por favor, digite o valor a ser depositado: ");
                     double valor = entrada.nextDouble();
+                    entrada.nextLine();
                     transacoes.processaDeposito(conta,valor);
                     quebraLinha();
                     System.out.println("Deposito realizado");
@@ -226,19 +231,20 @@ public class InterfaceUsuario {
                     System.out.println("");
                     System.out.println("Por favor, digite qualquer tecla para continuar");
                     entrada.nextLine();
-                    entrada.nextLine();
                     break;
 
                 case 3:
                     System.out.println("Por favor, digite o numero da conta a ser feito o saque: ");
                     numConta = entrada.nextInt();
+                    entrada.nextLine();
                     conta = Banco.getConta(numConta);
                     quebraLinha();
                     System.out.println("A Conta selecionada foi: ");
                     System.out.println(conta);
                     quebraLinha();
                     System.out.println("Por favor, digite o valor do saque: ");
-                    double valor = entrada.nextDouble();
+                    valor = entrada.nextDouble();
+                    entrada.nextLine();
                     transacoes.processaSaque(conta,valor);
                     quebraLinha();
                     System.out.println("Saque realizado");
@@ -247,10 +253,37 @@ public class InterfaceUsuario {
                     System.out.println("");
                     System.out.println("Por favor, digite qualquer tecla para continuar");
                     entrada.nextLine();
-                    entrada.nextLine();
                     break;
                 case 4:
                     // transferencia
+                    System.out.println("Por favor, digite o numero da conta de origem para a transferencia: ");
+                    numConta = entrada.nextInt();
+                    entrada.nextLine();
+                    conta = Banco.getConta(numConta);
+                    quebraLinha();
+                    System.out.println("A Conta de origem selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    System.out.println("Por favor, digite o numero da conta de destindo para a trasnferencia: ");
+                    numConta = entrada.nextInt();
+                    entrada.nextLine();
+                    Conta contaDestino = Banco.getConta(numConta);
+                    quebraLinha();
+                    System.out.println("A Conta destino selecionada foi: ");
+                    System.out.println(contaDestino);
+                    quebraLinha();
+                    System.out.println("Por favor, digite o valor a ser transferido: ");
+                    valor = entrada.nextDouble();
+                    entrada.nextLine();
+                    transacoes.processaTransferencia(conta,contaDestino,valor);
+                    quebraLinha();
+                    System.out.println("Transferencia realizada");
+                    System.out.println("Novo saldo da conta de origem: " + conta.getSaldo());
+                    System.out.println("Novo saldo da conta de destino: " + contaDestino.getSaldo());
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor, digite qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 5:
                     // simular rendimento poupanca
@@ -278,6 +311,8 @@ public class InterfaceUsuario {
         do{
             menuRelatorios();
             opcao = entrada.nextInt();
+            entrada.nextLine();
+
 
             switch(opcao){
                 case 1:
