@@ -261,11 +261,9 @@ public class MenuOperacoes {
             System.out.println("ERRO: Conta nao e do tipo investimento");
         }
         else {
-
             quebraLinha();
             System.out.println("A Conta selecionada foi: ");
             System.out.println(conta);
-
             quebraLinha();
             System.out.println("Por favor digite o numero da opcao de investimento que deseja consultar: ");
             int escolha = entrada.nextInt();
@@ -277,13 +275,11 @@ public class MenuOperacoes {
             quebraLinha();
             System.out.println("Pressione qualquer tecla para simular o rendimento desse inestimento na sua conta");
             entrada.nextLine();
-
             quebraLinha();
             System.out.println(" Simulando rendimento da opcao " + escolha + " de investimento");
             System.out.println("Por favor digite a quantidade de meses que deseja simular: ");
             int periodoMeses = entrada.nextInt();
             entrada.nextLine();
-
             quebraLinha();
             System.out.println("Simulando rendimento");
             System.out.println("O investimento selecionado tem uma taxa de rentabilidade anual de: " + rendimentoInvestimento + "%");
