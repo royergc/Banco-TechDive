@@ -1,4 +1,4 @@
-package com.techdive.InterfaceUsuario;
+package com.techdive.InterfaceLinhaComando;
 
 public class InterfaceUsuario {
 

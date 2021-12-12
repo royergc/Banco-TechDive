@@ -1,4 +1,4 @@
-package com.techdive.InterfaceUsuario;
+package com.techdive.InterfaceLinhaComando;
 
 import com.techdive.Banco.Operacional.Banco;
 import com.techdive.Banco.Operacional.Conta;
@@ -7,8 +7,8 @@ import com.techdive.Banco.Operacional.Transacoes;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.techdive.InterfaceUsuario.InterfaceUsuario.limpaTela;
-import static com.techdive.InterfaceUsuario.InterfaceUsuario.quebraLinha;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.limpaTela;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.quebraLinha;
 
 public class MenuOperacoes {
 
@@ -138,9 +138,74 @@ public class MenuOperacoes {
                     break;
                 case 5:
                     // simular rendimento poupanca
+                    System.out.println("Por favor, digite o numero da conta poupanca para a simulacao de rendimento: ");
+                    numConta = entrada.nextInt();
+                    entrada.nextLine();
+                    conta = Banco.getConta(numConta);
+                    // TODO testar se a conta e poupanca mesmo - retorna null se nao for, usar instanceof etc etc
+                    quebraLinha();
+                    System.out.println("A Conta selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    System.out.println("Por favor digite a quantidade de meses que deseja simular: ");
+                    int periodoMeses = entrada.nextInt();
+                    entrada.nextLine();
+                    System.out.println("Por favor digite a taxa de rendimento anual da poupanca (em %): ");
+                    double rendimentoAnual = entrada.nextDouble();
+                    entrada.nextLine();
+                    quebraLinha();
+                    System.out.println("Simulando rendimento");
+                    System.out.println("Voce selecionou uma taxa de rentabilidade anual de: " + rendimentoAnual + "%" );
+                    System.out.println("Voce selecionou um periodo de : " + periodoMeses + " meses");
+                    quebraLinha();
+                    double rendimentoMensal = transacoes.simularRendimento(conta,periodoMeses,rendimentoAnual);
+                    System.out.printf("Para esses valores, seu rendimento sera de: %.2f %% %n", rendimentoMensal);
+                    System.out.println("Com esse rendimento, seu saldo que hoje e de: " + conta.getSaldo()
+                            + " ira se valorizar para: " + (conta.getSaldo()*(1+(rendimentoMensal/100))));
+                    quebraLinha();
+                    System.out.println("Pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 6:
                     // escolher investimento conta investimento
+                    System.out.println("Por favor, digite o numero da conta investimento para a selecionar opcoes de investimento: ");
+                    numConta = entrada.nextInt();
+                    entrada.nextLine();
+                    conta = Banco.getConta(numConta);
+                    // TODO testar se a conta e investimento mesmo - retorna null se nao for, usar instanceof etc etc
+                    quebraLinha();
+                    System.out.println("A Conta selecionada foi: ");
+                    System.out.println(conta);
+                    quebraLinha();
+                    System.out.println("Por favor digite o numero da opcao de investimento que deseja consultar: ");
+                    int escolha = entrada.nextInt();
+                    entrada.nextLine();
+                    quebraLinha();
+                    System.out.println("Voce selecionou a opcao " + escolha + " de investimento");
+                    double rendimentoInvestimento = transacoes.selecionarInvestimento(conta,escolha);
+                    System.out.printf("Para esse investimento, seu rendimento anual sera de: %.2f %% %n", rendimentoInvestimento);
+                    quebraLinha();
+                    System.out.println("Pressione qualquer tecla para simular o rendimento desse inestimento na sua conta");
+                    entrada.nextLine();
+
+                    quebraLinha();
+                    System.out.println(" Simulando rendimento da opcao " + escolha + " de investimento");
+                    System.out.println("Por favor digite a quantidade de meses que deseja simular: ");
+                    periodoMeses = entrada.nextInt();
+                    entrada.nextLine();
+
+                    quebraLinha();
+                    System.out.println("Simulando rendimento");
+                    System.out.println("O investimento selecionado tem uma taxa de rentabilidade anual de: " + rendimentoInvestimento + "%" );
+                    System.out.println("Voce selecionou um periodo de : " + periodoMeses + " meses");
+                    quebraLinha();
+                    rendimentoMensal = transacoes.simularRendimento(conta,periodoMeses,rendimentoInvestimento);
+                    System.out.printf("Para esse periodo e essa opcao de investimento, seu rendimento sera de: %.2f %% %n", rendimentoMensal);
+                    System.out.println("Com esse rendimento, seu saldo que hoje e de: " + conta.getSaldo()
+                            + " ira se valorizar para: " + (conta.getSaldo()*(1+(rendimentoMensal/100))));
+                    quebraLinha();
+                    System.out.println("Pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 7:
                     // alterar dados cadastrais

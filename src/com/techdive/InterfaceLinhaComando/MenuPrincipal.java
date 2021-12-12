@@ -1,9 +1,10 @@
-package com.techdive.InterfaceUsuario;
+package com.techdive.InterfaceLinhaComando;
 
 import java.util.Scanner;
 
-import static com.techdive.InterfaceUsuario.InterfaceUsuario.*;
-
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.quebraLinha;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.limpaTela;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.sairSistema;
 
 public class MenuPrincipal {
 

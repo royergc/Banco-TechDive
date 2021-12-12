@@ -1,10 +1,7 @@
 package com.techdive;
 
 import com.techdive.Banco.Cliente;
-import com.techdive.Banco.Operacional.Banco;
-import com.techdive.Banco.Operacional.Conta;
-import com.techdive.Banco.Operacional.ContaCorrente;
-import com.techdive.Banco.Operacional.Transacoes;
+import com.techdive.Banco.Operacional.*;
 import com.techdive.Banco.Relatorios;
 
 import java.util.ArrayList;
@@ -27,17 +24,28 @@ public class Tester {
 
     public static ContaCorrente criaContaCorrente(Cliente cliente, String agencia) {
         System.out.println("Tentando criar conta corrente");
-        if(Banco.cadastraConta(cliente,agencia,1)){
+        if (Banco.cadastraConta(cliente, agencia, 1)) {
             System.out.println("Conta criada");
             ContaCorrente conta = (ContaCorrente) Banco.getConta(Banco.getNumContaCliente(cliente.getCpf()));
             System.out.println(conta);
             return conta;
-        }
-        else {
+        } else {
             System.out.println("Erro - conta não foi criada");
             return null;
         }
+    }
 
+    public static ContaPoupanca criaContaPoupanca(Cliente cliente, String agencia) {
+        System.out.println("Tentando criar conta poupanca");
+        if (Banco.cadastraConta(cliente, agencia, 2)) {
+            System.out.println("Conta criada");
+            ContaPoupanca conta = (ContaPoupanca) Banco.getConta(Banco.getNumContaCliente(cliente.getCpf()));
+            System.out.println(conta);
+            return conta;
+        } else {
+            System.out.println("Erro - conta nao foi criada");
+            return null;
+        }
     }
 
     public static void main(String[] args) {
@@ -45,6 +53,7 @@ public class Tester {
 
         Cliente guilherme = criaCliente("Guilherme", "03596463955", 1500);
         ContaCorrente ccGuilherme = criaContaCorrente(guilherme,"Florianopolis");
+        ContaPoupanca poupGuilherme = criaContaPoupanca(guilherme,"Florianopolis");
 
         Cliente joao = criaCliente("Joao", "06706746991", 20000);
         ContaCorrente ccJoao = criaContaCorrente(joao,"Sao Jose");
@@ -176,10 +185,10 @@ public class Tester {
         double valortotaldobanco = relatorios.getTotalSaldos();
         System.out.println(" - VALOR TOTAL INVESTIDO NO BANCO : " + valortotaldobanco);
 
+        System.out.println("Simulando rendimento");
+        System.out.println("3 meses, taxa anual de 20");
+        System.out.println("Resultado: " + transacoes.simularRendimento(ccGuilherme,3,20));
 
 
-
-
-        //Menu tela = new Menu();
     }
 }

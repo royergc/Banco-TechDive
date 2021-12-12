@@ -1,13 +1,15 @@
-package com.techdive.InterfaceUsuario;
+package com.techdive.InterfaceLinhaComando;
 
 import com.techdive.Banco.Operacional.Conta;
 import com.techdive.Banco.Operacional.ContaCorrente;
+import com.techdive.Banco.Operacional.ContaPoupanca;
 import com.techdive.Banco.Relatorios;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.techdive.InterfaceUsuario.InterfaceUsuario.*;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.quebraLinha;
+import static com.techdive.InterfaceLinhaComando.InterfaceUsuario.limpaTela;
 
 public class MenuRelatorios {
 
@@ -70,7 +72,17 @@ public class MenuRelatorios {
                     break;
 
                 case 3:
-                    // listar contas poupanca
+                    ArrayList<ContaPoupanca> relatorioContasPoupanca = relatorios.getContasPoupanca();
+                    quebraLinha();
+                    System.out.println("Lista das contas poupanca do banco");
+                    quebraLinha();
+                    for(ContaPoupanca conta : relatorioContasPoupanca) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 4:
                     // listar contas investimento

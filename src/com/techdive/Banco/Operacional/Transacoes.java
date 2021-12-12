@@ -74,8 +74,24 @@ public class Transacoes {
         return transacoes;
     }
 
+    public double simularRendimento(Conta conta, int periodoMeses, double taxaAnual) {
+        if(conta instanceof ContaPoupanca) {
+           return ((ContaPoupanca) conta).simularRendimento(periodoMeses,taxaAnual);
+        }
+        else if(conta instanceof ContaInvestimento) {
+            return ((ContaInvestimento) conta).simularRendimento(periodoMeses,taxaAnual);
+        }
+        else {
+            System.out.println("Erro - o tipo da conta nao permite essa operacao");
+            return 0;
+        }
+    }
 
-    /*
-    registrarInvestimento
-    */
+    public double selecionarInvestimento(Conta conta, int escolha) {
+        if(conta instanceof ContaInvestimento) {
+            return ((ContaInvestimento) conta).escolheInvestimento(escolha);
+        }
+        System.out.println("Erro - o tipo da conta nao permite essa operacao");
+        return 0;
+    }
 }

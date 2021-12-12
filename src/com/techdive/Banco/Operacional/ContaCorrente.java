@@ -30,8 +30,8 @@ public class ContaCorrente extends Conta {
 
     @Override
     public String toString() {
-        return super.toString() +
-                " [LimiteChequeEspecial] = " + limiteChequeEspecial + " - " +
+        return super.toString() + "\n" +
+                "[Tipo] = Conta Corrente [LimiteChequeEspecial] = " + limiteChequeEspecial + " - " +
                 "[UsoLimiteChequeEspecial] = " + usoLimiteChequeEspecial;
     }
 
