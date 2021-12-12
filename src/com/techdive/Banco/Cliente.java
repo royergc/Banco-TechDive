@@ -19,7 +19,7 @@ public class Cliente {
     }
 
     // Algoritmo retirado de : https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
-    private static boolean validaCPF(String cpf) {
+    public static boolean validaCPF(String cpf) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (cpf.equals("00000000000") ||
                 cpf.equals("11111111111") ||
