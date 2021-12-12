@@ -5,6 +5,7 @@ import com.techdive.Banco.Operacional.Banco;
 import com.techdive.Banco.Operacional.Conta;
 import com.techdive.Banco.Operacional.ContaCorrente;
 import com.techdive.Banco.Operacional.Transacoes;
+import com.techdive.Banco.Relatorios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -306,6 +307,7 @@ public class InterfaceUsuario {
 
     public static void chamaMenuRelatorios() {
         int opcao;
+        Relatorios relatorios = new Relatorios();
         Scanner entrada = new Scanner(System.in);
 
         do{
@@ -316,11 +318,30 @@ public class InterfaceUsuario {
 
             switch(opcao){
                 case 1:
-                    // listar contas
+                    ArrayList<Conta> relatorioContas = relatorios.getTodasContasDoBanco();
+                    quebraLinha();
+                    System.out.println("Lista das contas do banco");
+                    quebraLinha();
+                    for (Conta conta : relatorioContas) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
 
                 case 2:
-                    // listar contas correntes
+                    ArrayList<ContaCorrente> relatorioContasCorrente = relatorios.getContasCorrente();quebraLinha();
+                    System.out.println("Lista das contas correntes do banco");
+                    quebraLinha();
+                    for(ContaCorrente conta : relatorioContasCorrente) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
 
                 case 3:
@@ -330,13 +351,42 @@ public class InterfaceUsuario {
                     // listar contas investimento
                     break;
                 case 5:
-                    // listar contas negativas
+                    ArrayList<ContaCorrente> relatorioContasNegativas = relatorios.getContasSaldoInferior(0);
+                    System.out.println("Lista das contas com saldo negativo no banco");
+                    quebraLinha();
+                    for (ContaCorrente conta : relatorioContasNegativas) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 6:
-                    // mostrar total investido
+                    double valortotaldobanco = relatorios.getTotalSaldos();
+                    quebraLinha();
+                    System.out.println("Saldo total disponivel no banco : " + valortotaldobanco);
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
                     break;
                 case 7:
-                    // mostrar transacoes
+                    ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("[");
+                    limpaTela();
+                    quebraLinha();
+                    System.out.println("O sistema ira imprimir o historico de todas as transacoes realizadas no banco");
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Pressione qualquer tecla para prosseguir");
+                    entrada.nextLine();
+                    for(int i = 0; i < historicoSaques.size(); i++) {
+                        System.out.println(historicoSaques.get(i));
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Pressione qualquer tecla para prosseguir");
+                    entrada.nextLine();
                     break;
                 case 0 :
                     // voltar menuPrincipal
