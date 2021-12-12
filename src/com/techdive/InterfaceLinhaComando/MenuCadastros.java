@@ -309,7 +309,7 @@ public class MenuCadastros {
             quebraLinha();
             System.out.println("Alteracoes implementadas com sucesso");
             System.out.println("Os dados da conta foram alterados");
-            System.out.printf(conta);
+            System.out.println(conta);
         } else {
             System.out.println("ERRO: dados nao alterados. Por favor verifique novamente os dados que deseja alterar");
         }

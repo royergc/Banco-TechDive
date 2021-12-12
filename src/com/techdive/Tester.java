@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tester {
-
+/*
     public static Cliente criaCliente(String nome, String cpf, double rendaMensal) {
+
+
         System.out.println("Tentando criar cliente");
         Cliente cliente = new Cliente(nome, cpf, rendaMensal);
         if (cliente.getCpf().equals("CPF invalido")) {
@@ -191,4 +193,5 @@ public class Tester {
 
 
     }
+*/
 }
