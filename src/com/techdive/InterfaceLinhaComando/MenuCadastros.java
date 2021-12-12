@@ -78,15 +78,17 @@ public class MenuCadastros {
                     System.out.println("Cadastrando novo cliente");
                     quebraLinha();
                     Cliente cliente = new Cliente(nome, cpf, rendaMensal);
-                    Banco.cadastraCliente(cliente);
+                    if (Banco.cadastraCliente(cliente)) {
 
-                    System.out.println("Cliente cadastrado corretamente");
-                    System.out.println(cliente);
+                        System.out.println("Cliente cadastrado corretamente");
+                        System.out.println(cliente);
+                    } else {
+                        System.out.println(" ERRO: cliente nao cadastrado");
+                    }
                     quebraLinha();
                     System.out.println("");
                     System.out.println("Pressione qualquer tecla para prosseguir");
                     entrada.nextLine();
-
                     break;
 
                 case 2:
@@ -188,10 +190,17 @@ public class MenuCadastros {
                         Banco.cadastraConta(cliente,agencia,2);
                         int numConta = Banco.getNumContaCliente(cpf);
                         ContaPoupanca conta = (ContaPoupanca) Banco.getConta(numConta);
-                        limpaTela();
-                        quebraLinha();
-                        System.out.println("Conta Poupanca cadastrada corretamente");
-                        System.out.println(conta);
+                        if(conta == null)
+                        {
+                            quebraLinha();
+                            System.out.println("ERRO: Conta inexistente");
+                        }
+                        else {
+                            limpaTela();
+                            quebraLinha();
+                            System.out.println("Conta Poupanca cadastrada corretamente");
+                            System.out.println(conta);
+                        }
                         quebraLinha();
                         System.out.println("");
                         System.out.println("Pressione qualquer tecla para prosseguir");
@@ -239,10 +248,17 @@ public class MenuCadastros {
                         Banco.cadastraConta(cliente,agencia,3);
                         int numConta = Banco.getNumContaCliente(cpf);
                         ContaInvestimento conta = (ContaInvestimento) Banco.getConta(numConta);
-                        limpaTela();
-                        quebraLinha();
-                        System.out.println("Conta Investimento cadastrada corretamente");
-                        System.out.println(conta);
+                        if(conta == null)
+                        {
+                            quebraLinha();
+                            System.out.println("ERRO: Conta inexistente");
+                        }
+                        else {
+                            limpaTela();
+                            quebraLinha();
+                            System.out.println("Conta Investimento cadastrada corretamente");
+                            System.out.println(conta);
+                        }
                         quebraLinha();
                         System.out.println("");
                         System.out.println("Pressione qualquer tecla para prosseguir");
