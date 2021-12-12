@@ -1,0 +1,126 @@
+package com.techdive.InterfaceUsuario;
+
+import com.techdive.Banco.Operacional.Conta;
+import com.techdive.Banco.Operacional.ContaCorrente;
+import com.techdive.Banco.Relatorios;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import static com.techdive.InterfaceUsuario.InterfaceUsuario.*;
+
+public class MenuRelatorios {
+
+    public static void menuRelatorios(){
+        limpaTela();
+        quebraLinha();
+        System.out.println("Menu Relatorios");
+        quebraLinha();
+        System.out.println("Escolha a opção desejada: ");
+        System.out.println("1 - Listar todas as contas");
+        System.out.println("2 - Listar contas correntes");
+        System.out.println("3 - Listar contas poupanca");
+        System.out.println("4 - Listar contas investimento");
+        System.out.println("5 - Listar contas com saldo negativo");
+        System.out.println("6 - Mostrar total investido");
+        System.out.println("7 - Mostrar transacoes");
+        System.out.println("0 - Retornar ao menu principal");
+        System.out.println("");
+        System.out.println("Opcao: ");
+    }
+
+    public static void chamaMenuRelatorios() {
+        int opcao;
+        Relatorios relatorios = new Relatorios();
+        Scanner entrada = new Scanner(System.in);
+
+        do{
+            menuRelatorios();
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+
+
+            switch(opcao){
+                case 1:
+                    ArrayList<Conta> relatorioContas = relatorios.getTodasContasDoBanco();
+                    quebraLinha();
+                    System.out.println("Lista das contas do banco");
+                    quebraLinha();
+                    for (Conta conta : relatorioContas) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
+                    break;
+
+                case 2:
+                    ArrayList<ContaCorrente> relatorioContasCorrente = relatorios.getContasCorrente();
+                    quebraLinha();
+                    System.out.println("Lista das contas correntes do banco");
+                    quebraLinha();
+                    for(ContaCorrente conta : relatorioContasCorrente) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
+                    break;
+
+                case 3:
+                    // listar contas poupanca
+                    break;
+                case 4:
+                    // listar contas investimento
+                    break;
+                case 5:
+                    ArrayList<ContaCorrente> relatorioContasNegativas = relatorios.getContasSaldoInferior(0);
+                    System.out.println("Lista das contas com saldo negativo no banco");
+                    quebraLinha();
+                    for (ContaCorrente conta : relatorioContasNegativas) {
+                        System.out.println(conta);
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
+                    break;
+                case 6:
+                    double valortotaldobanco = relatorios.getTotalSaldos();
+                    quebraLinha();
+                    System.out.println("Saldo total disponivel no banco : " + valortotaldobanco);
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Por favor pressione qualquer tecla para continuar");
+                    entrada.nextLine();
+                    break;
+                case 7:
+                    ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("[");
+                    limpaTela();
+                    quebraLinha();
+                    System.out.println("O sistema ira imprimir o historico de todas as transacoes realizadas no banco");
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Pressione qualquer tecla para prosseguir");
+                    entrada.nextLine();
+                    for(int i = 0; i < historicoSaques.size(); i++) {
+                        System.out.println(historicoSaques.get(i));
+                    }
+                    quebraLinha();
+                    System.out.println("");
+                    System.out.println("Pressione qualquer tecla para prosseguir");
+                    entrada.nextLine();
+                    break;
+                case 0 :
+                    // voltar menuPrincipal
+                    break;
+                default:
+                    limpaTela();
+                    System.out.println("Opção inválida! Tente novamente");
+            }
+        } while(opcao != 0);
+    }
+
+}

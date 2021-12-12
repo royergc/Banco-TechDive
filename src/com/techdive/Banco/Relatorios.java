@@ -74,7 +74,7 @@ public class Relatorios {
         ArrayList<ContaCorrente> contasCorrentes = getContasCorrente();
         ArrayList<ContaCorrente> contasInferiores = new ArrayList<>();
         for(ContaCorrente conta : contasCorrentes) {
-            if(conta.getSaldo() <= valor){
+            if(conta.getSaldo() < valor){
                 contasInferiores.add(conta);
             }
         }
