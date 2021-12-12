@@ -15,24 +15,27 @@ public class Relatorios {
     public ArrayList<String> getHistoricoCliente(Cliente cliente) {
         transacoes = Transacoes.iniciaTransacoes();
         ArrayList<String> historico = transacoes.getHistoricoTransacoes();
-        for (int i = 0; i < historico.size(); i++) {
-            if (!(historico.get(i).contains(cliente.getCpf()))) {
-                historico.remove(i);
+        ArrayList<String> historicoCliente = new ArrayList<>();
+        for (String transacao : historico) {
+            if (transacao.contains(cliente.getCpf())) {
+                historicoCliente.add(transacao);
             }
         }
-        return historico;
+        return historicoCliente;
     }
 
     public ArrayList<String> getHistoricoOperacao(String operacao) {
         transacoes = Transacoes.iniciaTransacoes();
         ArrayList<String> historico = transacoes.getHistoricoTransacoes();
-        for(int i = 0; i < historico.size(); i++) {
-            if(!(historico.get(i).contains(operacao))) {
-                historico.remove(i);
+        ArrayList<String> historicoOperacoes = new ArrayList<>();
+        for (String transacao : historico) {
+            if (transacao.contains(operacao)) {
+                historicoOperacoes.add(transacao);
             }
         }
-        return historico;
+        return historicoOperacoes;
     }
+
     public ArrayList<Conta> getTodasContasDoBanco() {
         return Banco.getListaContas();
     }
@@ -47,21 +50,21 @@ public class Relatorios {
         return contas;
     }
 
-    public ArrayList<Conta> getContasInvestimento() {
-        ArrayList<Conta> contas = getTodasContasDoBanco();
-        for(Conta conta : contas) {
-            if(!(conta instanceof ContaInvestimento)){
-                contas.remove(conta);
+    public ArrayList<ContaInvestimento> getContasInvestimento() {
+        ArrayList<ContaInvestimento> contas = new ArrayList<>();
+        for(Conta conta : getTodasContasDoBanco()) {
+            if(conta instanceof ContaInvestimento){
+                contas.add((ContaInvestimento) conta);
             }
         }
         return contas;
     }
 
-    public ArrayList<Conta> getContasPoupanca() {
-        ArrayList<Conta> contas = getTodasContasDoBanco();
-        for(Conta conta : contas) {
-            if(!(conta instanceof ContaPoupanca)){
-                contas.remove(conta);
+    public ArrayList<ContaPoupanca> getContasPoupanca() {
+        ArrayList<ContaPoupanca> contas = new ArrayList<>();
+        for(Conta conta : getTodasContasDoBanco() ) {
+            if(conta instanceof ContaPoupanca) {
+                contas.add((ContaPoupanca) conta);
             }
         }
         return contas;
@@ -88,13 +91,30 @@ public class Relatorios {
         return contas;
     }
 
-    public double getValorInvestidoTotal() {
-        double valorInvestido = 0;
+    public double getTotalSaldos() {
+        double valorSaldos = 0;
         ArrayList<Conta> contas = getTodasContasDoBanco();
         for (Conta conta : contas) {
-            valorInvestido += conta.getSaldo();
+            valorSaldos += conta.getSaldo();
         }
-        return valorInvestido;
+        return valorSaldos;
     }
 
+    public double getValorInvestimentos() {
+        double valorInvestimentos = 0;
+        ArrayList<ContaInvestimento> contas = getContasInvestimento();
+        for(ContaInvestimento conta : contas) {
+            valorInvestimentos += conta.getSaldo();
+        }
+        return valorInvestimentos;
+    }
+
+    public double getValorPoupancas() {
+        double valorPoupancas = 0;
+        ArrayList<ContaPoupanca> contas = getContasPoupanca();
+        for(ContaPoupanca conta : contas) {
+            valorPoupancas += conta.getSaldo();
+        }
+        return valorPoupancas;
+    }
 }

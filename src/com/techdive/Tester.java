@@ -141,14 +141,14 @@ public class Tester {
             System.out.println(historicoMarilene.get(i));
         }
 
-        ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("Saque");
-        System.out.println("-------------------- IMPRIMINDO HISTORICO Saques -----------------");
+        ArrayList<String> historicoSaques = relatorios.getHistoricoOperacao("[");
+        System.out.println("-------------------- IMPRIMINDO HISTORICO Operações -----------------");
         for(int i = 0; i < historicoSaques.size(); i++) {
             System.out.println(historicoSaques.get(i));
         }
 
 
-        ArrayList<String> historicoTransf = relatorios.getHistoricoOperacao("Transferencia");
+        ArrayList<String> historicoTransf = relatorios.getHistoricoOperacao("Transferência");
         System.out.println("-------------------- IMPRIMINDO HISTORICO Transferencias -----------------");
         for(int i = 0; i < historicoTransf.size(); i++) {
             System.out.println(historicoTransf.get(i));
@@ -173,7 +173,7 @@ public class Tester {
             System.out.println(conta);
         }
 
-        double valortotaldobanco = relatorios.getValorInvestidoTotal();
+        double valortotaldobanco = relatorios.getTotalSaldos();
         System.out.println(" - VALOR TOTAL INVESTIDO NO BANCO : " + valortotaldobanco);
 
 
