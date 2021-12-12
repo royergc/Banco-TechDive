@@ -18,7 +18,7 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-    public boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
+    protected boolean alteraCadastro(String nome, double rendaMensal, String agencia) {
         if(rendaMensal < 0) {
             return false;
         }

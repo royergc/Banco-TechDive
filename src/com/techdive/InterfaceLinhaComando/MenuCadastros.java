@@ -50,7 +50,6 @@ public class MenuCadastros {
                  break;
                 case 5:
                     pedeAlterarDadosCadastrais();
-                    // alterar dados cadastrais
                     break;
                 default:
                     limpaTela();
@@ -134,10 +133,7 @@ public class MenuCadastros {
             quebraLinha();
             System.out.println("Cliente nao tem cadastro no banco");
             System.out.println("Faca o cadastro do cliente para poder criar a conta");
-            quebraLinha();
-            System.out.println("");
-            System.out.println("Pressione qualquer tecla para prosseguir");
-            entrada.nextLine();
+            pressioneParaContinuar();
             return;
         }
         else {
@@ -145,8 +141,7 @@ public class MenuCadastros {
             System.out.println("O cliente selecionado foi: ");
             System.out.println(cliente);
             quebraLinha();
-            System.out.println("Por favor digite a agencia em que a conta devera ser criada: ");
-            String agencia = entrada.nextLine();
+            String agencia = MenuCadastros.selecionaAgencia();
             Banco.cadastraConta(cliente,agencia,1);
             int numConta = Banco.getNumContaCliente(cpf);
             ContaCorrente conta = (ContaCorrente) Banco.getConta(numConta);
@@ -201,8 +196,7 @@ public class MenuCadastros {
             System.out.println("O cliente selecionado foi: ");
             System.out.println(cliente);
             quebraLinha();
-            System.out.println("Por favor digite a agencia em que a conta devera ser criada: ");
-            String agencia = entrada.nextLine();
+            String agencia = selecionaAgencia();
             Banco.cadastraConta(cliente, agencia, 2);
             int numConta = Banco.getNumContaCliente(cpf);
             ContaPoupanca conta = (ContaPoupanca) Banco.getConta(numConta);
@@ -256,8 +250,7 @@ public class MenuCadastros {
             System.out.println("O cliente selecionado foi: ");
             System.out.println(cliente);
             quebraLinha();
-            System.out.println("Por favor digite a agencia em que a conta devera ser criada: ");
-            String agencia = entrada.nextLine();
+            String agencia = selecionaAgencia();
             Banco.cadastraConta(cliente,agencia,3);
             int numConta = Banco.getNumContaCliente(cpf);
             ContaInvestimento conta = (ContaInvestimento) Banco.getConta(numConta);
@@ -303,8 +296,7 @@ public class MenuCadastros {
         System.out.println("Digite a renda mensal do titular da conta: ");
         double rendaMensal = entrada.nextDouble();
         entrada.nextLine();
-        System.out.println("Digite a agencia da conta: ");
-        String agencia = entrada.nextLine();
+        String agencia = selecionaAgencia();
         if(Banco.alteraCadastro(conta,nome,rendaMensal,agencia)) {
             quebraLinha();
             System.out.println("Alteracoes implementadas com sucesso");
@@ -315,4 +307,25 @@ public class MenuCadastros {
         }
         pressioneParaContinuar();
     }
+
+    public static String selecionaAgencia() {
+        Scanner entrada = new Scanner(System.in);
+        String agencia;
+        System.out.println("Por favor selecione a agencia desejada: ");
+        System.out.println(" 1 - Florianopolis");
+        System.out.println(" 2 - Sao Jose");
+        System.out.println(" Ou qualquer numero para a agencia padrão: 1 - Florianopolis");
+        int escolha = entrada.nextInt();
+        switch(escolha) {
+            case 1:
+                agencia = "Florianopolis";
+                break;
+            case 2:
+                agencia = "Sao Jose";
+                break;
+            default:
+                agencia = "Florianopolis";
+        }
+        return agencia;
+   }
 }
